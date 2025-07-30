@@ -11,7 +11,7 @@ public class Unidade {
     
     private int id;
     private String nome;
-    //private Endereco local;
+    private String endereco;
     private Gerente gerente;
     private List<Vendedor> vendedores;
     private Estoque estoque;
