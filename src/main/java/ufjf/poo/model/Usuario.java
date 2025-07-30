@@ -1,8 +1,7 @@
 package ufjf.poo.model;
-import java.util.List;
 
 
-public abstract class usuario {
+public abstract class Usuario {
     
     private String nome;
     private int id;
@@ -10,7 +9,7 @@ public abstract class usuario {
     private String private_Key;
     private String email;
     
-    public usuario(String nome , int id , String key, String email){
+    public Usuario(String nome , int id , String key, String email){
         
         this.nome = nome;
         this. id = id;
