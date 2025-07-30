@@ -6,6 +6,7 @@ import ufjf.poo.model.usuario.Gerente;
 import ufjf.poo.model.usuario.Vendedor;
 
 import java.util.List;
+import java.util.Map;
 
 public class Unidade {
     
@@ -15,20 +16,33 @@ public class Unidade {
     private Gerente gerente;
     private List<Vendedor> vendedores;
     private Estoque estoque;
-    
-    public void adicionarVendedor() {
+
+    public Unidade(int id, String nome, String endereco) {
+        this.id = id;
+        this.nome = nome;
+        this.endereco = endereco;
+        this.gerente = null;
+        this.vendedores = null;
+        this.estoque = null;
     }
     
-    public void removerVendedor() {
+    public void adicionarVendedor(Vendedor novoVendedor) {
+        if (novoVendedor != null)
+            vendedores.add(novoVendedor);
+    }
+    
+    public void removerVendedor(Vendedor novoVendedor) {
+        vendedores.remove(novoVendedor);
     }
     
     public void gerarRelatorioVendas() {
     }
     
-    public void trocarGerente() {
+    public void trocarGerente(Gerente novoGerente) {
+        gerente = novoGerente;
     }
     
-    public List<Produto> listarEstoque() {
+    public Map<Produto, Integer> mapeiaEstoque() {
         return null;
     }
 }
