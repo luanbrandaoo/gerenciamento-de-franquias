@@ -11,6 +11,19 @@ public abstract class Usuario {
     
     public Usuario(String nome , int id , String key, String email){
         
+    if (nome == null || nome.trim().isEmpty()) {
+        throw new IllegalArgumentException("Nome do usuário não deve ser vazio.");
+    }
+    if (id <= 0) {
+        throw new IllegalArgumentException("ID do usuário deve ser positivo.");
+    }
+    if (email == null || !email.contains("@")) { 
+        throw new IllegalArgumentException("Email inválido.");
+    }
+    if (key == null || key.trim().isEmpty()) { 
+        throw new IllegalArgumentException("Private Key não deve ser vazia.");
+    }
+        
         this.nome = nome;
         this. id = id;
         this.email = email;
