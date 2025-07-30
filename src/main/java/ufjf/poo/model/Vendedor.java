@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Vendedor extends Usuario {
     
-    //private List<Pedido> pedidosRealizados;
+    private List<Pedido> pedidosRealizados;
 
     public Vendedor(String nome, int id, String key, String email) {
         super(nome, id, key, email);
