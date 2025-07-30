@@ -3,11 +3,11 @@ package ufjf.poo.model;
 
 public abstract class Usuario {
     
-    private String nome;
-    private int id;
+    private final String nome;
+    private final int id;
     //private List <notificacao> notificacoes;
-    private String privateKey;
-    private String email;
+    private final String privateKey;
+    private final String email;
     
     public Usuario(String nome , int id , String key, String email){
         
