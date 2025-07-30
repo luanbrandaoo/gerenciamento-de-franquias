@@ -1,4 +1,4 @@
-package ufjf.poo.model;
+package ufjf.poo.model.usuario;
 
 
 public abstract class Usuario {

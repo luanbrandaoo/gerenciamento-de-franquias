@@ -1,4 +1,6 @@
-package ufjf.poo.model;
+package ufjf.poo.model.usuario;
+
+import ufjf.poo.model.Unidade;
 
 import java.util.List;
 

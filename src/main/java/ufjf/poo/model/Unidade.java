@@ -1,5 +1,10 @@
 package ufjf.poo.model;
 
+import ufjf.poo.model.estoque.Estoque;
+import ufjf.poo.model.estoque.Produto;
+import ufjf.poo.model.usuario.Gerente;
+import ufjf.poo.model.usuario.Vendedor;
+
 import java.util.List;
 
 public class Unidade {
