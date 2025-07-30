@@ -41,8 +41,4 @@ public class Unidade {
     public void trocarGerente(Gerente novoGerente) {
         gerente = novoGerente;
     }
-    
-    public Map<Produto, Integer> mapeiaEstoque() {
-        return null;
-    }
 }
