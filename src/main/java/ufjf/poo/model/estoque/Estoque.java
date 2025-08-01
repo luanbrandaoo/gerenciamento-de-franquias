@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static java.lang.Integer.max;
+import static java.util.Map.entry;
 import javax.xml.crypto.Data;
 
 public class Estoque {
@@ -58,4 +59,42 @@ public class Estoque {
     public boolean produtoEmEstoque(Produto produto) {
         return produtos.containsKey(produto) && produtos.get(produto) != 0;
     }
+    
+    public void listarProdutos(){
+        
+        if(produtos.isEmpty()){
+            System.out.println("Estoque vazio! ");
+            return;
+        }
+        
+        System.out.println("--- Produtos no Estoque ---");
+        for(Map.Entry<Produto, Integer> produtoAtual : mapeiaEstoque().entrySet()){
+            
+            Produto produto = produtoAtual.getKey();
+            Integer quantidade = produtoAtual.getValue();
+            System.out.println("Codigo: " + produto.getCodigo() +
+                               " | Nome" + produto.getNome() + 
+                               " | Preço: R$ " + String.format("%.2f", produto.getPreco()) + 
+                               " | Quantidade: " + quantidade);
+        }
+        System.out.println("______________________");
+    }
+    
+    public Produto buscarProdutoPorCodigo(String codigo){
+        
+        for(Produto produtoBuscado : produtos.keySet()){
+            if(produtoBuscado.getCodigo().equals(codigo))
+                return produtoBuscado;
+        }
+        
+        return null;
+    }
+    
+    public boolean estaDisponivel(Produto produto, int quantidade){
+        
+        int quantidadeDisponivel = quantidadeProduto(produto);
+        
+        return quantidadeDisponivel >= quantidade;
+    }
+    
 }

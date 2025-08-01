@@ -69,6 +69,13 @@ public class Pedido {
         calcularTotal();
     }
     
+    public void adicionarItem(List<ItemPedido> novosItens) {
+    if (novosItens != null && !novosItens.isEmpty()) {
+        this.itens.addAll(novosItens);
+        calcularTotal();
+    }
+}
+    
     //Esta versao esta removendo todas as ocorrencias de um mesmo produto
     public void removerItem(Produto produto) {
         
@@ -158,7 +165,4 @@ public class Pedido {
         
         this.formaDeEntrega = formaDeEntrega;
     }
-    
-    
-    
 }
