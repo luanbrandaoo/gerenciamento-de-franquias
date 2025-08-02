@@ -84,4 +84,16 @@ public class Unidade {
     public String getNome(){
         return nome;
     }
+    
+    public int getId(){
+        return id;
+    }
+    
+    public String getEndereco(){
+        return endereco;
+    }
+    
+    public Gerente getGerente(){
+        return gerente;
+    }
 }
