@@ -13,6 +13,7 @@ public class Vendedor extends Usuario {
     
     private List<Pedido> pedidosRealizados;
     private Estoque estoqueDisponivel;
+    private static int proximoIdPedido = 0;
     
 
     public Vendedor(String nome, int id, String key, String email, Estoque estoqueDisponivel) {
@@ -26,7 +27,9 @@ public class Vendedor extends Usuario {
         return new ArrayList<>(pedidosRealizados);
     }
     
-    
+    private static int gerarProximoIdPedido() {
+        return proximoIdPedido++;
+    }
     
     public void cadastrarPedidos(Scanner teclado) {
         
@@ -89,12 +92,10 @@ public class Vendedor extends Usuario {
         
         System.out.print("Forma de Entrega: Entrega ou Retirada ");
         String formaDeEntrega = teclado.nextLine();
-        
-        String idAleatorio = java.util.UUID.randomUUID().toString();
-        int idPedido = Integer.parseInt(idAleatorio);
+               
+        int idPedido = Vendedor.proximoIdPedido; // os ID`s comecam em 0 para os testes 
                 
         Date dataHoraAtual = new Date();
-        
         
         Pedido novoPedido = new Pedido(idPedido, nomeCliente, this, dataHoraAtual, formaDePagamento, formaDeEntrega);
         
@@ -112,6 +113,34 @@ public class Vendedor extends Usuario {
     }
     
     public void visualizarPedidos() {
-
+        
+        if(pedidosRealizados.isEmpty()){
+            System.out.println("Sem pedidos feitos! ");
+            return;
+        }
+        
+        System.out.println("\n--- Histórico de Pedidos Realizados ---");
+        
+        for(Pedido pedido : pedidosRealizados){
+            System.out.println("ID do pedido: " + pedido.getIdPedido());
+            System.out.println("Cliente: " + pedido.getNomeCliente());
+            System.out.println("Data: " + pedido.getDataPedido());
+            System.out.println("Vendedor: " + pedido.getVendedor());
+            System.out.println("Status: " + pedido.getStatus());
+            System.out.println("Forma de Pagamento: " + pedido.getFormaDePagamento());
+            System.out.println("Forma de Entrega: " + pedido.getFormaDeEntrega());
+            System.out.println("Valor Total: R$" + String.format("%.2f", pedido.getValorTotal()));
+            
+            
+            System.out.println("Itens do Pedido: ");
+            
+            for(ItemPedido item : pedido.getItens()){
+                System.out.println(" - " + item.produto().getNome() +
+                                   " - " + item.quantidade() + " Subtotal: R$" +
+                                    String.format("%.2f", item.subtotal()));
+            }
+        }
+        
+        System.out.println("Total de pedidos no histórico: " + pedidosRealizados.size());
     }
 }
