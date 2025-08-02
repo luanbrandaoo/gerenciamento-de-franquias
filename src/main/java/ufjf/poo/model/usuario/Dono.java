@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import ufjf.poo.model.Unidade;
 
 import java.util.List;
+import java.util.Scanner;
 import ufjf.poo.model.pedido.Pedido;
 
 public class Dono extends Usuario {
@@ -77,7 +78,88 @@ public class Dono extends Usuario {
         }
     }
     
-    public void editaUsuarios() {
-        // TODO
+    public void editaUsuarios(Scanner teclado) {
+        
+        if (unidadesGerenciadas.isEmpty()) {
+            System.out.println("Nenhuma unidade cadastrada para listar usuários.");
+            return;
+        }
+        System.out.println("Edicao de Usuarios. ");
+        listarTodosUsuarios();
+
+        System.out.println("Digite o ID do usuario que deseja editar: ");
+        
+        int idBusca;
+        Usuario usuarioEncontrado = null;
+        
+        idBusca = Integer.parseInt(teclado.nextLine());
+        
+        if(idBusca < 0){
+            System.out.println("ID invalido! ");
+            return;
+        }
+        
+        
+        for(Unidade u : unidadesGerenciadas){
+            if(u.getGerente() != null && u.getGerente().getId() == idBusca){
+                usuarioEncontrado = u.getGerente();
+                break;
+            }
+            
+            for(Vendedor v : u.getVendedores()){
+                if(v != null && v.getId() == idBusca){
+                    usuarioEncontrado = v;
+                    break;
+                }
+            }
+            
+            if (usuarioEncontrado != null) {
+                break;
+            }
+        }
+        
+         if (usuarioEncontrado == null) {
+            System.out.println("Usuário com ID " + idBusca + " não encontrado.");
+            return;
+        }
+         
+         System.out.println(" Usuario Encontrado: ID " + usuarioEncontrado.getId() + " Nome: " + usuarioEncontrado.getNome());
+         
+         System.out.println("Digite um novo nome (ou deixe em branco caso nao queira mudar! ) ");
+         String novoNome =  teclado.nextLine();
+         if(!novoNome.trim().isEmpty()){
+             usuarioEncontrado.setNome(novoNome);
+         }
+         
+         System.out.println("Digite o novo Email (ou deixe em branco caso nao queira mudar! ) ");
+         String novoEmail =  teclado.nextLine();
+         if(!novoEmail.trim().isEmpty()){
+             usuarioEncontrado.setEmail(novoEmail);
+         }
+         
+         System.out.println("Informações do usuário atualizadas com sucesso!");
+    }
+    
+    public void listarTodosUsuarios() {
+    System.out.println("\n Lista de Gerentes e Vendedores ");
+        if (unidadesGerenciadas.isEmpty()) {
+            System.out.println("Nenhuma unidade cadastrada para listar usuários.");
+            return;
+        }
+
+        for (Unidade unidade : unidadesGerenciadas) {
+            System.out.println("\nUnidade: " + unidade.getNome() + " ID: " + unidade.getId());
+
+            // Lista o Gerente da Unidade
+            Gerente gerente = unidade.getGerente();
+            if (gerente != null) {
+                System.out.println("- Gerente -> ID: " + gerente.getId() + ", Nome: " + gerente.getNome());
+            }
+
+            // Lista os Vendedores da Unidade
+            for (Vendedor vendedor : unidade.getVendedores()) {
+                System.out.println("- Vendedor -> ID: " + vendedor.getId() + ", Nome: " + vendedor.getNome());
+            }
+        }
     }
 }
