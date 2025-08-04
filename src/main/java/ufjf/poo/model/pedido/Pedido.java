@@ -81,21 +81,8 @@ public class Pedido {
         
         if(produto == null)
             throw new IllegalArgumentException("O produto nao deve ser nulo! ");
-        
-        boolean removido = false;
-        Iterator<ItemPedido> iterator = itens.iterator();
-        
-        while(iterator.hasNext()){
-            
-            ItemPedido itemProcurado = iterator.next();
-            
-            if(itemProcurado.produto().equals(produto)){
-                iterator.remove();
-                removido = true;
-                
-                //  break; Caso queira remover somente a primeira ocorrencia 
-            }
-        }
+
+        boolean removido = itens.removeIf(itemPedido -> itemPedido.produto().equals(produto));
         
         if(removido){
             System.out.println("Produto(s) removido(s) do pedido.");
