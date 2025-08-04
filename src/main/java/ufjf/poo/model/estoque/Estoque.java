@@ -1,13 +1,9 @@
 package ufjf.poo.model.estoque;
 
-import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import static java.lang.Integer.max;
-import static java.util.Map.entry;
-import javax.xml.crypto.Data;
 
 public class Estoque {
     
@@ -37,12 +33,6 @@ public class Estoque {
     public int quantidadeProduto(Produto produto) {
         return produtos.getOrDefault(produto, 0);
     }
-
-    /*Necessário revisar implementação de ItemEstoque aqui*/
-//    public void adicionarItemEstoque(Produto produto, int quantidade, Date validade) {
-//        ItemEstoque novoItem = new ItemEstoque(produto, quantidade, validade);
-//        produtos.add(novoItem);
-//    }
     
     public Set<Produto> produtosEmEstoque() {
         return produtos.keySet();
