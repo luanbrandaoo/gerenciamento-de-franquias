@@ -10,7 +10,7 @@ class ProdutoTest {
 
     @BeforeEach
     void setUp() {
-        produto = new Produto("Notebook", "NB001", 2500.0f);
+        produto = new Produto("Notebook", "NB001", 2500*100);
     }
 
     @Test
@@ -23,28 +23,28 @@ class ProdutoTest {
     @Test
     void testCriacaoProdutoComPrecoNegativo() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Produto("Produto", "P001", -10.0f);
+            new Produto("Produto", "P001", -10*100);
         });
     }
 
     @Test
     void testCriacaoProdutoComNomeNulo() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Produto(null, "P001", 100.0f);
+            new Produto(null, "P001", 100*100);
         });
     }
 
     @Test
     void testCriacaoProdutoComNomeVazio() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Produto("", "P001", 100.0f);
+            new Produto("", "P001", 100*100);
         });
     }
 
     @Test
     void testCriacaoProdutoComCodigoNulo() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Produto("Produto", null, 100.0f);
+            new Produto("Produto", null, 100*100);
         });
     }
 
@@ -70,21 +70,21 @@ class ProdutoTest {
 
     @Test
     void testSetPrecoValido() {
-        produto.setPreco(3000.0f);
-        assertEquals(3000.0f, produto.getPreco());
+        produto.setPreco(3000*100);
+        assertEquals(300000, produto.getPreco());
     }
 
     @Test
     void testSetPrecoNegativo() {
         float precoOriginal = produto.getPreco();
-        produto.setPreco(-100.0f);
+        produto.setPreco(-100*100);
         assertEquals(precoOriginal, produto.getPreco());
     }
 
     @Test
     void testSetPrecoZero() {
         float precoOriginal = produto.getPreco();
-        produto.setPreco(0.0f);
+        produto.setPreco(0*100);
         assertEquals(precoOriginal, produto.getPreco());
     }
 }

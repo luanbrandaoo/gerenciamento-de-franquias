@@ -4,9 +4,9 @@ public class Produto {
     
     private String nome;
     private String codigo;
-    private float preco;
+    private long preco;
     
-    public Produto(String nome , String codigo, float preco){
+    public Produto(String nome , String codigo, long preco){
         
         if(preco < 0){
             throw new IllegalArgumentException("O valor do produto nao deve ser negativo! ");
@@ -31,7 +31,7 @@ public class Produto {
         return codigo;
     }
     
-    public float getPreco(){
+    public long getPreco(){
         return preco;
     }
     
@@ -41,7 +41,7 @@ public class Produto {
             this.nome = nome;
     }
     
-    public void setPreco(float preco){
+    public void setPreco(long preco){
         
         if(preco > 0 )
             this.preco = preco;

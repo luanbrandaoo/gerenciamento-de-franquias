@@ -11,7 +11,7 @@ import java.util.List;
 public class Pedido {
     
     private List<ItemPedido> itens;
-    private double valorTotal;
+    private long valorTotal;
     private final Vendedor vendedor;
     private final Date data;
     
@@ -45,13 +45,13 @@ public class Pedido {
         this.formaDePagamento = formaDePagamento;
         this.formaDeEntrega = formaDeEntrega;
         this.itens = new ArrayList<>();
-        this.valorTotal = 0.0; 
+        this.valorTotal = 0;
         this.status = "Pendente";
         
     }
     
     public void calcularTotal() {
-        valorTotal = 0.0;
+        valorTotal = 0;
         for(ItemPedido itemAtual : itens){
             valorTotal += itemAtual.subtotal();
         }
@@ -126,7 +126,7 @@ public class Pedido {
         return new ArrayList<>(itens);
     }
     
-    public Double getValorTotal(){
+    public long getValorTotal(){
         return valorTotal;
     }
     
