@@ -51,7 +51,7 @@ public class Pedido {
     }
     
     public void calcularTotal() {
-        
+        valorTotal = 0.0;
         for(ItemPedido itemAtual : itens){
             valorTotal += itemAtual.subtotal();
         }
