@@ -14,7 +14,7 @@ public class Produto {
         if(nome == null || nome.trim().isEmpty()){
             throw new IllegalArgumentException("O nome do produto nao deve estar vazio! ");
         }
-        if(codigo == null || nome.trim().isEmpty()){
+        if(codigo == null || codigo.trim().isEmpty()){
             throw new IllegalArgumentException("O codigo do produto nao deve estar vazio! ");
         }
         
