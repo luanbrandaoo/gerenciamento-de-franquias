@@ -1,6 +1,9 @@
 package ufjf.poo.model.estoque;
 
 import java.math.BigDecimal;
+import ufjf.poo.exception.PrecoInvalidoException;
+import ufjf.poo.exception.NomeProdutoInvalidoException;
+import ufjf.poo.exception.CodigoProdutoInvalidoException;
 
 public class Produto {
     
@@ -11,13 +14,13 @@ public class Produto {
     public Produto(String nome , String codigo, BigDecimal preco){
         
         if(preco == null || preco.compareTo(BigDecimal.ZERO) < 0){
-            throw new IllegalArgumentException("O valor do produto nao deve ser negativo! ");
+            throw new PrecoInvalidoException();
         }
         if(nome == null || nome.trim().isEmpty()){
-            throw new IllegalArgumentException("O nome do produto nao deve estar vazio! ");
+            throw new NomeProdutoInvalidoException();
         }
         if(codigo == null || codigo.trim().isEmpty()){
-            throw new IllegalArgumentException("O codigo do produto nao deve estar vazio! ");
+            throw new CodigoProdutoInvalidoException();
         }
         
         this.nome = nome;

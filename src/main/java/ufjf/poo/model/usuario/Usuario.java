@@ -1,5 +1,10 @@
 package ufjf.poo.model.usuario;
 
+import ufjf.poo.exception.NomeUsuarioInvalidoException;
+import ufjf.poo.exception.IdUsuarioInvalidoException;
+import ufjf.poo.exception.EmailInvalidoException;
+import ufjf.poo.exception.ChavePrivadaInvalidaException;
+
 
 public abstract class Usuario {
     
@@ -12,16 +17,16 @@ public abstract class Usuario {
     public Usuario(String nome , int id , String key, String email){
         
     if (nome == null || nome.trim().isEmpty()) {
-        throw new IllegalArgumentException("Nome do usuário não deve ser vazio.");
+        throw new NomeUsuarioInvalidoException();
     }
     if (id <= 0) {
-        throw new IllegalArgumentException("ID do usuário deve ser positivo.");
+        throw new IdUsuarioInvalidoException();
     }
     if (email == null || !email.contains("@")) { 
-        throw new IllegalArgumentException("Email inválido.");
+        throw new EmailInvalidoException();
     }
     if (key == null || key.trim().isEmpty()) { 
-        throw new IllegalArgumentException("Private Key não deve ser vazia.");
+        throw new ChavePrivadaInvalidaException();
     }
         
         this.nome = nome;

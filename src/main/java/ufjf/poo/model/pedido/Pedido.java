@@ -4,6 +4,12 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import ufjf.poo.model.estoque.Produto;
 import ufjf.poo.model.usuario.Vendedor;
+import ufjf.poo.exception.IdPedidoInvalidoException;
+import ufjf.poo.exception.NomeClienteInvalidoException;
+import ufjf.poo.exception.FormaPagamentoInvalidaException;
+import ufjf.poo.exception.FormaEntregaInvalidaException;
+import ufjf.poo.exception.ProdutoNuloException;
+import ufjf.poo.exception.StatusPedidoInvalidoException;
 
 import java.util.Date;
 import java.util.Iterator;
@@ -26,16 +32,16 @@ public class Pedido {
                   String formaDePagamento, String formaDeEntrega ){
         
         if(idPedido < 0)
-            throw new IllegalArgumentException("O id nao deve ser negativo! ");
+            throw new IdPedidoInvalidoException();
         
         if(nomeCliente == null || nomeCliente.trim().isEmpty())
-            throw new IllegalArgumentException("O nome do cliente nao deve estar vazia! ");
+            throw new NomeClienteInvalidoException();
         
         if(formaDePagamento == null || formaDePagamento.trim().isEmpty())
-            throw new IllegalArgumentException("A forma de pagamento nao deve estar vazia! ");
+            throw new FormaPagamentoInvalidaException();
         
         if(formaDeEntrega == null || formaDeEntrega.trim().isEmpty())
-            throw new IllegalArgumentException("A forma de entrega nao deve estar vazia! ");
+            throw new FormaEntregaInvalidaException();
         
          // TODO validar vendedor
         
@@ -61,7 +67,7 @@ public class Pedido {
     public void adicionarItem(Produto produto, int quantidade) {
         
         if(produto == null){
-            throw new IllegalArgumentException("O produto nao deve ser nulo! ");
+            throw new ProdutoNuloException();
         }
         
         ItemPedido novoItem = new ItemPedido(produto, quantidade, produto.getPreco().multiply(BigDecimal.valueOf(quantidade)));
@@ -81,7 +87,7 @@ public class Pedido {
     public void removerItem(Produto produto) {
         
         if(produto == null)
-            throw new IllegalArgumentException("O produto nao deve ser nulo! ");
+            throw new ProdutoNuloException();
 
         boolean removido = itens.removeIf(itemPedido -> itemPedido.produto().equals(produto));
         
@@ -133,7 +139,7 @@ public class Pedido {
     public void setStatus(String status){
         
         if(status == null || status.trim().isEmpty())
-            throw new IllegalArgumentException("O status do pedido nao deve ser vazio! ");
+            throw new StatusPedidoInvalidoException();
         
         this.status = status;
     }
@@ -141,7 +147,7 @@ public class Pedido {
     public void setFormaDePagamento(String formaDePagamento){
         
         if(formaDePagamento == null || formaDePagamento.trim().isEmpty())
-            throw new IllegalArgumentException("Forma de pagamento nao inserida! ");
+            throw new FormaPagamentoInvalidaException();
         
         this.formaDePagamento = formaDePagamento;
     }
@@ -149,7 +155,7 @@ public class Pedido {
     public void setFormaDeEntrega(String formaDeEntrega){
         
         if(formaDeEntrega == null || formaDeEntrega.trim().isEmpty())
-            throw new IllegalArgumentException("Forma de entrega nao inserida! ");
+            throw new FormaEntregaInvalidaException();
         
         this.formaDeEntrega = formaDeEntrega;
     }

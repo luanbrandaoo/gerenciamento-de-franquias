@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
 import java.math.BigDecimal;
+import ufjf.poo.exception.PrecoInvalidoException;
+import ufjf.poo.exception.NomeProdutoInvalidoException;
+import ufjf.poo.exception.CodigoProdutoInvalidoException;
 
 class ProdutoTest {
 
@@ -23,28 +26,28 @@ class ProdutoTest {
 
     @Test
     void testCriacaoProdutoComPrecoNegativo() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(PrecoInvalidoException.class, () -> {
             new Produto("Produto", "P001", new BigDecimal("-10.00"));
         });
     }
 
     @Test
     void testCriacaoProdutoComNomeNulo() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(NomeProdutoInvalidoException.class, () -> {
             new Produto(null, "P001", new BigDecimal("100.00"));
         });
     }
 
     @Test
     void testCriacaoProdutoComNomeVazio() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(NomeProdutoInvalidoException.class, () -> {
             new Produto("", "P001", new BigDecimal("100.00"));
         });
     }
 
     @Test
     void testCriacaoProdutoComCodigoNulo() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(CodigoProdutoInvalidoException.class, () -> {
             new Produto("Produto", null, new BigDecimal("100.00"));
         });
     }

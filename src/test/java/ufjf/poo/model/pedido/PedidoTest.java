@@ -6,6 +6,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import ufjf.poo.model.estoque.Estoque;
 import ufjf.poo.model.estoque.Produto;
 import ufjf.poo.model.usuario.Vendedor;
+import ufjf.poo.exception.IdPedidoInvalidoException;
+import ufjf.poo.exception.NomeClienteInvalidoException;
+import ufjf.poo.exception.FormaPagamentoInvalidaException;
+import ufjf.poo.exception.FormaEntregaInvalidaException;
+import ufjf.poo.exception.ProdutoNuloException;
+import ufjf.poo.exception.StatusPedidoInvalidoException;
 import java.util.Date;
 import java.util.List;
 import java.math.BigDecimal;
@@ -47,49 +53,49 @@ class PedidoTest {
 
     @Test
     void testCriacaoPedidoComIdNegativo() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(IdPedidoInvalidoException.class, () -> {
             new Pedido(-1, "Cliente", vendedor, data, "Cartão", "Entrega");
         });
     }
 
     @Test
     void testCriacaoPedidoComNomeClienteNulo() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(NomeClienteInvalidoException.class, () -> {
             new Pedido(1, null, vendedor, data, "Cartão", "Entrega");
         });
     }
 
     @Test
     void testCriacaoPedidoComNomeClienteVazio() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(NomeClienteInvalidoException.class, () -> {
             new Pedido(1, "", vendedor, data, "Cartão", "Entrega");
         });
     }
 
     @Test
     void testCriacaoPedidoComFormaPagamentoNula() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(FormaPagamentoInvalidaException.class, () -> {
             new Pedido(1, "Cliente", vendedor, data, null, "Entrega");
         });
     }
 
     @Test
     void testCriacaoPedidoComFormaPagamentoVazia() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(FormaPagamentoInvalidaException.class, () -> {
             new Pedido(1, "Cliente", vendedor, data, "", "Entrega");
         });
     }
 
     @Test
     void testCriacaoPedidoComFormaEntregaNula() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(FormaEntregaInvalidaException.class, () -> {
             new Pedido(1, "Cliente", vendedor, data, "Cartão", null);
         });
     }
 
     @Test
     void testCriacaoPedidoComFormaEntregaVazia() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(FormaEntregaInvalidaException.class, () -> {
             new Pedido(1, "Cliente", vendedor, data, "Cartão", "");
         });
     }
@@ -107,7 +113,7 @@ class PedidoTest {
 
     @Test
     void testAdicionarItemProdutoNulo() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(ProdutoNuloException.class, () -> {
             pedido.adicionarItem(null, 1);
         });
     }
@@ -154,7 +160,7 @@ class PedidoTest {
 
     @Test
     void testRemoverItemProdutoNulo() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(ProdutoNuloException.class, () -> {
             pedido.removerItem(null);
         });
     }
@@ -181,14 +187,14 @@ class PedidoTest {
 
     @Test
     void testSetStatusNulo() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(StatusPedidoInvalidoException.class, () -> {
             pedido.setStatus(null);
         });
     }
 
     @Test
     void testSetStatusVazio() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(StatusPedidoInvalidoException.class, () -> {
             pedido.setStatus("");
         });
     }
@@ -201,14 +207,14 @@ class PedidoTest {
 
     @Test
     void testSetFormaDePagamentoNula() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(FormaPagamentoInvalidaException.class, () -> {
             pedido.setFormaDePagamento(null);
         });
     }
 
     @Test
     void testSetFormaDePagamentoVazia() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(FormaPagamentoInvalidaException.class, () -> {
             pedido.setFormaDePagamento("");
         });
     }
@@ -221,14 +227,14 @@ class PedidoTest {
 
     @Test
     void testSetFormaDeEntregaNula() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(FormaEntregaInvalidaException.class, () -> {
             pedido.setFormaDeEntrega(null);
         });
     }
 
     @Test
     void testSetFormaDeEntregaVazia() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(FormaEntregaInvalidaException.class, () -> {
             pedido.setFormaDeEntrega("");
         });
     }

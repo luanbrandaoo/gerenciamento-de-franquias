@@ -3,6 +3,10 @@ package ufjf.poo.model.usuario;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
+import ufjf.poo.exception.NomeUsuarioInvalidoException;
+import ufjf.poo.exception.IdUsuarioInvalidoException;
+import ufjf.poo.exception.EmailInvalidoException;
+import ufjf.poo.exception.ChavePrivadaInvalidaException;
 
 class UsuarioTest {
 
@@ -24,56 +28,56 @@ class UsuarioTest {
 
     @Test
     void testCriacaoUsuarioComNomeNulo() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(NomeUsuarioInvalidoException.class, () -> {
             new Usuario(null, 1, "senha123", "joao@email.com") {};
         });
     }
 
     @Test
     void testCriacaoUsuarioComNomeVazio() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(NomeUsuarioInvalidoException.class, () -> {
             new Usuario("", 1, "senha123", "joao@email.com") {};
         });
     }
 
     @Test
     void testCriacaoUsuarioComIdNegativo() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(IdUsuarioInvalidoException.class, () -> {
             new Usuario("João Silva", -1, "senha123", "joao@email.com") {};
         });
     }
 
     @Test
     void testCriacaoUsuarioComIdZero() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(IdUsuarioInvalidoException.class, () -> {
             new Usuario("João Silva", 0, "senha123", "joao@email.com") {};
         });
     }
 
     @Test
     void testCriacaoUsuarioComEmailInvalido() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(EmailInvalidoException.class, () -> {
             new Usuario("João Silva", 1, "senha123", "email-invalido") {};
         });
     }
 
     @Test
     void testCriacaoUsuarioComEmailNulo() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(EmailInvalidoException.class, () -> {
             new Usuario("João Silva", 1, "senha123", null) {};
         });
     }
 
     @Test
     void testCriacaoUsuarioComPrivateKeyNula() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(ChavePrivadaInvalidaException.class, () -> {
             new Usuario("João Silva", 1, null, "joao@email.com") {};
         });
     }
 
     @Test
     void testCriacaoUsuarioComPrivateKeyVazia() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(ChavePrivadaInvalidaException.class, () -> {
             new Usuario("João Silva", 1, "", "joao@email.com") {};
         });
     }
