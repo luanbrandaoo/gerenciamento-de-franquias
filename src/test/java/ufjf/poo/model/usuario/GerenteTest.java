@@ -8,6 +8,7 @@ import ufjf.poo.model.estoque.Estoque;
 import ufjf.poo.model.estoque.Produto;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -23,8 +24,8 @@ class GerenteTest {
 
     @BeforeEach
     void setUp() {
-        produto1 = new Produto("Notebook", "NB001", 2500.0f);
-        produto2 = new Produto("Mouse", "M001", 50.0f);
+        produto1 = new Produto("Notebook", "NB001", new BigDecimal("2500.00"));
+        produto2 = new Produto("Mouse", "M001", new BigDecimal("50.00"));
         
         HashMap<Produto, Integer> produtos = new HashMap<>();
         produtos.put(produto1, 10);
@@ -118,7 +119,7 @@ class GerenteTest {
 
     @Test
     void testAdministrarEstoqueAdicionar() {
-        Produto produtoNovo = new Produto("Teclado", "T001", 150.0f);
+        Produto produtoNovo = new Produto("Teclado", "T001", new BigDecimal("150.00"));
         
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
@@ -211,7 +212,7 @@ class GerenteTest {
     @Test
     void testFuncionalidadesGerenteIntegradas() {
         // gerente adiciona produto, vendedor faz pedido, gerente controla
-        Produto produtoNovo = new Produto("Headset", "H001", 200.0f);
+        Produto produtoNovo = new Produto("Headset", "H001", new BigDecimal("200.00"));
         gerente.administrarEstoque(produtoNovo, 15, "adicionar");
         
         // verificar se produto foi adicionado

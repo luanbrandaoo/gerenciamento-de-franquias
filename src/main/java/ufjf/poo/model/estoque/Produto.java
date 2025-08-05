@@ -1,14 +1,16 @@
 package ufjf.poo.model.estoque;
 
+import java.math.BigDecimal;
+
 public class Produto {
     
     private String nome;
     private String codigo;
-    private long preco;
+    private BigDecimal preco;
     
-    public Produto(String nome , String codigo, long preco){
+    public Produto(String nome , String codigo, BigDecimal preco){
         
-        if(preco < 0){
+        if(preco == null || preco.compareTo(BigDecimal.ZERO) < 0){
             throw new IllegalArgumentException("O valor do produto nao deve ser negativo! ");
         }
         if(nome == null || nome.trim().isEmpty()){
@@ -31,7 +33,7 @@ public class Produto {
         return codigo;
     }
     
-    public long getPreco(){
+    public BigDecimal getPreco(){
         return preco;
     }
     
@@ -41,9 +43,9 @@ public class Produto {
             this.nome = nome;
     }
     
-    public void setPreco(long preco){
+    public void setPreco(BigDecimal preco){
         
-        if(preco > 0 )
+        if(preco != null && preco.compareTo(BigDecimal.ZERO) > 0 )
             this.preco = preco;
     }
     

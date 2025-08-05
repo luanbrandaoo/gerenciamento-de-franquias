@@ -1,5 +1,6 @@
 package ufjf.poo.model;
 
+import java.math.BigDecimal;
 import ufjf.poo.model.estoque.Estoque;
 import ufjf.poo.model.estoque.Produto;
 import ufjf.poo.model.usuario.Gerente;
@@ -43,29 +44,29 @@ public class Unidade {
             return;
         }
         
-        double totalVendasUnidade = 0.0;
+        BigDecimal totalVendasUnidade = BigDecimal.ZERO;
         int    totalPedidosUnidade = 0;
         
         System.out.println("Relatorio de vendas por vendedor: ");
         
         for(Vendedor vendedorAnalisado : vendedores){
-            double totalVendadsVendedor = 0.0;
+            BigDecimal totalVendasVendedor = BigDecimal.ZERO;
             
             for(Pedido pedidoAnalisado : vendedorAnalisado.getPedidosRealizados()){
-                totalVendadsVendedor += pedidoAnalisado.getValorTotal();
+                totalVendasVendedor = totalVendasVendedor.add(pedidoAnalisado.getValorTotal());
             }
             
             System.out.println("- Vendedor: " + vendedorAnalisado.getNome() + 
                                vendedorAnalisado.getPedidosRealizados().size() + 
-                               " pedidos, Total R$" + String.format("%.2f", totalVendadsVendedor));
+                               " pedidos, Total R$" + totalVendasVendedor);
             
-            totalPedidosUnidade += totalVendadsVendedor;
+            totalVendasUnidade = totalVendasUnidade.add(totalVendasVendedor);
             totalPedidosUnidade += vendedorAnalisado.getPedidosRealizados().size();
         }
         
         System.out.println("Resumo da Unidade:");
         System.out.println("Total de Pedidos: " + totalPedidosUnidade);
-        System.out.println("Total de Vendas: R$" + String.format("%.2f", totalVendasUnidade));
+        System.out.println("Total de Vendas: R$" + totalVendasUnidade);
         
     }
     

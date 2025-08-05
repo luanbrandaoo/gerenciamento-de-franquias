@@ -1,5 +1,6 @@
 package ufjf.poo.model.usuario;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import ufjf.poo.model.Unidade;
 
@@ -66,9 +67,9 @@ public class Dono extends Usuario {
                 
         for(Unidade u : unidadesGerenciadas){
             for(Vendedor v : u.getVendedores()){
-                double totalVendas = 0.0;
+                BigDecimal totalVendas = BigDecimal.ZERO;
                 for(Pedido p : v.getPedidosRealizados()){
-                    totalVendas += p.getValorTotal();
+                    totalVendas = totalVendas.add(p.getValorTotal());
                 }
                 
                 System.out.println(" Vendedor: " + v.getNome() +

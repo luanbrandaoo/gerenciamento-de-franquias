@@ -3,6 +3,7 @@ package ufjf.poo.model.estoque;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -16,8 +17,8 @@ class EstoqueTest {
 
     @BeforeEach
     void setUp() {
-        produto1 = new Produto("Notebook", "NB001", 2500.0f);
-        produto2 = new Produto("Mouse", "M001", 50.0f);
+        produto1 = new Produto("Notebook", "NB001", new BigDecimal("2500.00"));
+        produto2 = new Produto("Mouse", "M001", new BigDecimal("50.00"));
         
         produtos = new HashMap<>();
         produtos.put(produto1, 10);
@@ -34,7 +35,7 @@ class EstoqueTest {
 
     @Test
     void testAdicionarProdutoNovo() {
-        Produto produtoNovo = new Produto("Teclado", "T001", 150.0f);
+        Produto produtoNovo = new Produto("Teclado", "T001", new BigDecimal("150.00"));
         estoque.adicionarProduto(produtoNovo, 15);
         
         assertEquals(15, estoque.quantidadeProduto(produtoNovo));
@@ -74,7 +75,7 @@ class EstoqueTest {
 
     @Test
     void testQuantidadeProdutoInexistente() {
-        Produto produtoInexistente = new Produto("Inexistente", "I001", 1.0f);
+        Produto produtoInexistente = new Produto("Inexistente", "I001", new BigDecimal("1.00"));
         assertEquals(0, estoque.quantidadeProduto(produtoInexistente));
     }
 
@@ -106,7 +107,7 @@ class EstoqueTest {
         assertTrue(estoque.produtoEmEstoque(produto1));
         assertTrue(estoque.produtoEmEstoque(produto2));
         
-        Produto produtoInexistente = new Produto("Inexistente", "I001", 1.0f);
+        Produto produtoInexistente = new Produto("Inexistente", "I001", new BigDecimal("1.00"));
         assertFalse(estoque.produtoEmEstoque(produtoInexistente));
     }
 
@@ -134,7 +135,7 @@ class EstoqueTest {
 
     @Test
     void testEstaDisponivelProdutoInexistente() {
-        Produto produtoInexistente = new Produto("Inexistente", "I001", 1.0f);
+        Produto produtoInexistente = new Produto("Inexistente", "I001", new BigDecimal("1.00"));
         assertFalse(estoque.estaDisponivel(produtoInexistente, 1));
     }
 }

@@ -8,6 +8,7 @@ import ufjf.poo.model.estoque.Estoque;
 import ufjf.poo.model.estoque.Produto;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,8 +31,8 @@ class DonoTest {
 
     @BeforeEach
     void setUp() {
-        produto1 = new Produto("Notebook", "NB001", 2500.0f);
-        produto2 = new Produto("Mouse", "M001", 50.0f);
+        produto1 = new Produto("Notebook", "NB001", new BigDecimal("2500.00"));
+        produto2 = new Produto("Mouse", "M001", new BigDecimal("50.00"));
         
         HashMap<Produto, Integer> produtos1 = new HashMap<>();
         produtos1.put(produto1, 10);

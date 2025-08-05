@@ -8,6 +8,7 @@ import ufjf.poo.model.estoque.Produto;
 import ufjf.poo.model.usuario.Vendedor;
 import java.util.Date;
 import java.util.List;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -21,8 +22,8 @@ class PedidoTest {
 
     @BeforeEach
     void setUp() {
-        produto1 = new Produto("Notebook", "NB001", 2500.0f);
-        produto2 = new Produto("Mouse", "M001", 50.0f);
+        produto1 = new Produto("Notebook", "NB001", new BigDecimal("2500.00"));
+        produto2 = new Produto("Mouse", "M001", new BigDecimal("50.00"));
         
         Estoque estoque = new Estoque(new HashMap<>());
         vendedor = new Vendedor("João Vendedor", 1, "senha123", "joao@email.com", estoque);
@@ -40,7 +41,7 @@ class PedidoTest {
         assertEquals("Cartão", pedido.getFormaDePagamento());
         assertEquals("Entrega", pedido.getFormaDeEntrega());
         assertEquals("Pendente", pedido.getStatus());
-        assertEquals(0.0, pedido.getValorTotal());
+        assertEquals(BigDecimal.ZERO, pedido.getValorTotal());
         assertTrue(pedido.getItens().isEmpty());
     }
 
@@ -101,7 +102,7 @@ class PedidoTest {
         assertEquals(1, itens.size());
         assertEquals(produto1, itens.get(0).produto());
         assertEquals(2, itens.get(0).quantidade());
-        assertEquals(5000.0, pedido.getValorTotal()); // 2500 * 2
+        assertEquals(new BigDecimal("5000.00"), pedido.getValorTotal()); // 2500 * 2
     }
 
     @Test
@@ -114,27 +115,27 @@ class PedidoTest {
     @Test
     void testAdicionarListaItens() {
         List<ItemPedido> novosItens = new ArrayList<>();
-        novosItens.add(new ItemPedido(produto1, 1, 2500.0));
-        novosItens.add(new ItemPedido(produto2, 2, 100.0));
+        novosItens.add(new ItemPedido(produto1, 1, new BigDecimal("2500.00")));
+        novosItens.add(new ItemPedido(produto2, 2, new BigDecimal("100.00")));
         
         pedido.adicionarItem(novosItens);
         
         assertEquals(2, pedido.getItens().size());
-        assertEquals(2600.0, pedido.getValorTotal()); // 2500 + 100
+        assertEquals(new BigDecimal("2600.00"), pedido.getValorTotal()); // 2500 + 100
     }
 
     @Test
     void testAdicionarListaItensNula() {
         pedido.adicionarItem((List<ItemPedido>) null);
         assertEquals(0, pedido.getItens().size());
-        assertEquals(0.0, pedido.getValorTotal());
+        assertEquals(BigDecimal.ZERO, pedido.getValorTotal());
     }
 
     @Test
     void testAdicionarListaItensVazia() {
         pedido.adicionarItem(new ArrayList<>());
         assertEquals(0, pedido.getItens().size());
-        assertEquals(0.0, pedido.getValorTotal());
+        assertEquals(BigDecimal.ZERO, pedido.getValorTotal());
     }
 
     @Test
@@ -148,7 +149,7 @@ class PedidoTest {
         
         assertEquals(1, pedido.getItens().size());
         assertEquals(produto2, pedido.getItens().get(0).produto());
-        assertEquals(50.0, pedido.getValorTotal()); // apenas o mouse
+        assertEquals(new BigDecimal("50.00"), pedido.getValorTotal()); // apenas o mouse
     }
 
     @Test
@@ -163,13 +164,13 @@ class PedidoTest {
         pedido.adicionarItem(produto1, 1); // 2500
         pedido.adicionarItem(produto2, 3); // 150
         
-        assertEquals(2650.0, pedido.getValorTotal());
+        assertEquals(new BigDecimal("2650.00"), pedido.getValorTotal());
     }
 
     @Test
     void testCalcularTotalSemItens() {
         pedido.calcularTotal();
-        assertEquals(0.0, pedido.getValorTotal());
+        assertEquals(BigDecimal.ZERO, pedido.getValorTotal());
     }
 
     @Test

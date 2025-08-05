@@ -3,6 +3,7 @@ package ufjf.poo.model.estoque;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
+import java.math.BigDecimal;
 
 class ProdutoTest {
 
@@ -10,41 +11,41 @@ class ProdutoTest {
 
     @BeforeEach
     void setUp() {
-        produto = new Produto("Notebook", "NB001", 2500*100);
+        produto = new Produto("Notebook", "NB001", new BigDecimal("2500.00"));
     }
 
     @Test
     void testCriacaoProdutoValido() {
         assertEquals("Notebook", produto.getNome());
         assertEquals("NB001", produto.getCodigo());
-        assertEquals(2500.0f, produto.getPreco());
+        assertEquals(new BigDecimal("2500.00"), produto.getPreco());
     }
 
     @Test
     void testCriacaoProdutoComPrecoNegativo() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Produto("Produto", "P001", -10*100);
+            new Produto("Produto", "P001", new BigDecimal("-10.00"));
         });
     }
 
     @Test
     void testCriacaoProdutoComNomeNulo() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Produto(null, "P001", 100*100);
+            new Produto(null, "P001", new BigDecimal("100.00"));
         });
     }
 
     @Test
     void testCriacaoProdutoComNomeVazio() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Produto("", "P001", 100*100);
+            new Produto("", "P001", new BigDecimal("100.00"));
         });
     }
 
     @Test
     void testCriacaoProdutoComCodigoNulo() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Produto("Produto", null, 100*100);
+            new Produto("Produto", null, new BigDecimal("100.00"));
         });
     }
 
@@ -70,21 +71,21 @@ class ProdutoTest {
 
     @Test
     void testSetPrecoValido() {
-        produto.setPreco(3000*100);
-        assertEquals(300000, produto.getPreco());
+        produto.setPreco(new BigDecimal("3000.00"));
+        assertEquals(new BigDecimal("3000.00"), produto.getPreco());
     }
 
     @Test
     void testSetPrecoNegativo() {
-        float precoOriginal = produto.getPreco();
-        produto.setPreco(-100*100);
+        BigDecimal precoOriginal = produto.getPreco();
+        produto.setPreco(new BigDecimal("-100.00"));
         assertEquals(precoOriginal, produto.getPreco());
     }
 
     @Test
     void testSetPrecoZero() {
-        float precoOriginal = produto.getPreco();
-        produto.setPreco(0*100);
+        BigDecimal precoOriginal = produto.getPreco();
+        produto.setPreco(BigDecimal.ZERO);
         assertEquals(precoOriginal, produto.getPreco());
     }
 }

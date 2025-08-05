@@ -1,5 +1,6 @@
 package ufjf.poo.model.usuario;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import ufjf.poo.model.pedido.Pedido;
@@ -44,7 +45,7 @@ public class Vendedor extends Usuario {
         
         List<ItemPedido> itensDoPedido = new ArrayList<>();
         
-        double totalDoPedido = 0.0;
+        BigDecimal totalDoPedido = BigDecimal.ZERO;
         
         boolean addItem = true;
         
@@ -69,10 +70,10 @@ public class Vendedor extends Usuario {
                 //esta funcao retorna um valor logioco e so faz o pedido caso hava estoque disponivel
                 if(estoqueDisponivel.estaDisponivel(produtoEscolhido, quantidade)){
                     
-                    double subtotalDoItem = produtoEscolhido.getPreco() * quantidade;
+                    BigDecimal subtotalDoItem = produtoEscolhido.getPreco().multiply(BigDecimal.valueOf(quantidade));
                     ItemPedido novoItem = new ItemPedido(produtoEscolhido, quantidade, subtotalDoItem);
                     itensDoPedido.add(novoItem);
-                    totalDoPedido += subtotalDoItem;
+                    totalDoPedido = totalDoPedido.add(subtotalDoItem);
                     
                     System.out.println("Item adicionado: " + produtoEscolhido.getNome() + " " + quantidade);
                 }     

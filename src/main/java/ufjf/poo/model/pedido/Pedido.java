@@ -1,5 +1,6 @@
 package ufjf.poo.model.pedido;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import ufjf.poo.model.estoque.Produto;
 import ufjf.poo.model.usuario.Vendedor;
@@ -11,7 +12,7 @@ import java.util.List;
 public class Pedido {
     
     private List<ItemPedido> itens;
-    private long valorTotal;
+    private BigDecimal valorTotal;
     private final Vendedor vendedor;
     private final Date data;
     
@@ -45,15 +46,15 @@ public class Pedido {
         this.formaDePagamento = formaDePagamento;
         this.formaDeEntrega = formaDeEntrega;
         this.itens = new ArrayList<>();
-        this.valorTotal = 0;
+        this.valorTotal = BigDecimal.ZERO;
         this.status = "Pendente";
         
     }
     
     public void calcularTotal() {
-        valorTotal = 0;
+        valorTotal = BigDecimal.ZERO;
         for(ItemPedido itemAtual : itens){
-            valorTotal += itemAtual.subtotal();
+            valorTotal = valorTotal.add(itemAtual.subtotal());
         }
     }
     
@@ -63,7 +64,7 @@ public class Pedido {
             throw new IllegalArgumentException("O produto nao deve ser nulo! ");
         }
         
-        ItemPedido novoItem = new ItemPedido(produto, quantidade, produto.getPreco()*quantidade);
+        ItemPedido novoItem = new ItemPedido(produto, quantidade, produto.getPreco().multiply(BigDecimal.valueOf(quantidade)));
         
         this.itens.add(novoItem);
         calcularTotal();
@@ -76,7 +77,7 @@ public class Pedido {
     }
 }
     
-    //Esta versao esta removendo todas as ocorrencias de um mesmo produto
+
     public void removerItem(Produto produto) {
         
         if(produto == null)
@@ -113,7 +114,7 @@ public class Pedido {
         return new ArrayList<>(itens);
     }
     
-    public long getValorTotal(){
+    public BigDecimal getValorTotal(){
         return valorTotal;
     }
     

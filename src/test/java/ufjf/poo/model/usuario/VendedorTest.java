@@ -8,6 +8,7 @@ import ufjf.poo.model.estoque.Produto;
 import ufjf.poo.model.pedido.Pedido;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -21,8 +22,8 @@ class VendedorTest {
 
     @BeforeEach
     void setUp() {
-        produto1 = new Produto("Notebook", "NB001", 2500.0f);
-        produto2 = new Produto("Mouse", "M001", 50.0f);
+        produto1 = new Produto("Notebook", "NB001", new BigDecimal("2500.00"));
+        produto2 = new Produto("Mouse", "M001", new BigDecimal("50.00"));
         
         HashMap<Produto, Integer> produtos = new HashMap<>();
         produtos.put(produto1, 10);
@@ -93,7 +94,7 @@ class VendedorTest {
         assertEquals("Cliente Teste", pedidoCriado.getNomeCliente());
         assertEquals("Cartão", pedidoCriado.getFormaDePagamento());
         assertEquals("Entrega", pedidoCriado.getFormaDeEntrega());
-        assertTrue(pedidoCriado.getValorTotal() > 0);
+        assertTrue(pedidoCriado.getValorTotal().compareTo(BigDecimal.ZERO) > 0);
     }
 
     @Test
@@ -226,6 +227,6 @@ class VendedorTest {
         assertEquals(2, pedido.getItens().size());
         
         // valor total deve ser: 1 * 2500 + 2 *50 = 2600
-        assertEquals(2600.0, pedido.getValorTotal());
+        assertEquals(new BigDecimal("2600.00"), pedido.getValorTotal());
     }
 }
