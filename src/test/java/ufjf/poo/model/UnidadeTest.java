@@ -7,12 +7,13 @@ import ufjf.poo.model.estoque.Estoque;
 import ufjf.poo.model.estoque.Produto;
 import ufjf.poo.model.usuario.Gerente;
 import ufjf.poo.model.usuario.Vendedor;
+import ufjf.poo.model.pedido.ItemPedido;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 class UnidadeTest {
 
@@ -145,14 +146,14 @@ class UnidadeTest {
         unidade.adicionarVendedor(vendedor1);
         unidade.adicionarVendedor(vendedor2);
         
-        String inputPedido1 = "Cliente A\nNB001\n1\nn\nCartão\nEntrega\n";
-        String inputPedido2 = "Cliente B\nM001\n2\nn\nPIX\nRetirada\n";
+        List<ItemPedido> itens1 = new ArrayList<>();
+        itens1.add(new ItemPedido(produto1, 1, produto1.getPreco()));
         
-        Scanner scanner1 = new Scanner(inputPedido1);
-        Scanner scanner2 = new Scanner(inputPedido2);
+        List<ItemPedido> itens2 = new ArrayList<>();
+        itens2.add(new ItemPedido(produto2, 2, produto2.getPreco().multiply(new BigDecimal("2"))));
         
-        vendedor1.cadastrarPedidos(scanner1);
-        vendedor2.cadastrarPedidos(scanner2);
+        vendedor1.cadastrarPedidos("Cliente A", "Cartão", "Entrega", itens1);
+        vendedor2.cadastrarPedidos("Cliente B", "PIX", "Retirada", itens2);
         
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));

@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import ufjf.poo.model.Unidade;
 import ufjf.poo.model.estoque.Estoque;
 import ufjf.poo.model.estoque.Produto;
+import ufjf.poo.model.pedido.ItemPedido;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.math.BigDecimal;
@@ -172,9 +173,10 @@ class DonoTest {
 
     @Test
     void testRelatorioVendedoresComVendas() {
-        String inputPedido = "Cliente Teste\nM001\n2\nn\nCartão\nEntrega\n";
-        Scanner scanner = new Scanner(inputPedido);
-        vendedor1.cadastrarPedidos(scanner);
+        List<ItemPedido> itens = new ArrayList<>();
+        itens.add(new ItemPedido(produto2, 2, produto2.getPreco().multiply(new BigDecimal("2"))));
+        
+        vendedor1.cadastrarPedidos("Cliente Teste", "Cartão", "Entrega", itens);
         
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
@@ -347,14 +349,14 @@ class DonoTest {
         assertTrue(output1.contains("Franquia Sul"));
 
         //criar pedidos para gerar dados de vendas
-        String inputPedido1 = "Cliente A\nNB001\n1\nn\nCartão\nEntrega\n";
-        String inputPedido2 = "Cliente B\nM001\n5\nn\nPIX\nRetirada\n";
+        List<ItemPedido> itens1 = new ArrayList<>();
+        itens1.add(new ItemPedido(produto1, 1, produto1.getPreco()));
         
-        Scanner scanner1 = new Scanner(inputPedido1);
-        Scanner scanner2 = new Scanner(inputPedido2);
+        List<ItemPedido> itens2 = new ArrayList<>();
+        itens2.add(new ItemPedido(produto2, 5, produto2.getPreco().multiply(new BigDecimal("5"))));
         
-        vendedor1.cadastrarPedidos(scanner1);
-        vendedor2.cadastrarPedidos(scanner2);
+        vendedor1.cadastrarPedidos("Cliente A", "Cartão", "Entrega", itens1);
+        vendedor2.cadastrarPedidos("Cliente B", "PIX", "Retirada", itens2);
         
         //verificar relatório de vendedores
         outputStream.reset();

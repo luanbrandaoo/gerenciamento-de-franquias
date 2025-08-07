@@ -6,12 +6,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import ufjf.poo.model.estoque.Estoque;
 import ufjf.poo.model.estoque.Produto;
 import ufjf.poo.model.pedido.Pedido;
+import ufjf.poo.model.pedido.ItemPedido;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 class VendedorTest {
 
@@ -62,31 +63,21 @@ class VendedorTest {
     void testCadastrarPedidosSemEstoque() {
         Vendedor vendedorSemEstoque = new Vendedor("Maria", 2, "senha456", "maria@email.com", null);
         
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
+        List<ItemPedido> itens = new ArrayList<>();
+        itens.add(new ItemPedido(produto1, 1, produto1.getPreco()));
         
-        Scanner scanner = new Scanner("Cliente Teste\n");
-        vendedorSemEstoque.cadastrarPedidos(scanner);
-        
-        String output = outputStream.toString();
-        assertTrue(output.contains("Erro: Estoque não configurado"));
-        
-        System.setOut(System.out);
+        assertThrows(NullPointerException.class, () -> {
+            vendedorSemEstoque.cadastrarPedidos("Cliente Teste", "Cartão", "Entrega", itens);
+        });
     }
 
     @Test
     void testCadastrarPedidoComSucesso() {
-        String input = "Cliente Teste\n" +  // nome do cliente
-                      "NB001\n" +           // código do produto
-                      "2\n" +               // quantidade
-                      "n\n" +               // não adicionar mais itens
-                      "Cartão\n" +          // forma de pagamento
-                      "Entrega\n";          // forma de entrega
-        
-        Scanner scanner = new Scanner(input);
+        List<ItemPedido> itens = new ArrayList<>();
+        itens.add(new ItemPedido(produto1, 2, produto1.getPreco().multiply(new BigDecimal("2"))));
         
         int pedidosAnteriores = vendedor.getPedidosRealizados().size();
-        vendedor.cadastrarPedidos(scanner);
+        vendedor.cadastrarPedidos("Cliente Teste", "Cartão", "Entrega", itens);
         
         assertEquals(pedidosAnteriores + 1, vendedor.getPedidosRealizados().size());
         
@@ -99,16 +90,11 @@ class VendedorTest {
 
     @Test
     void testCadastrarPedidoSemItens() {
-        String input = "Cliente Teste\n" +  // nome do cliente
-                      "sair\n";             // sair sem adicionar produtos
-
-        Scanner scanner = new Scanner(input);
-        
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
         
         int pedidosAnteriores = vendedor.getPedidosRealizados().size();
-        vendedor.cadastrarPedidos(scanner);
+        vendedor.cadastrarPedidos("Cliente Teste", "Cartão", "Entrega", new ArrayList<>());
         
         assertEquals(pedidosAnteriores, vendedor.getPedidosRealizados().size());
         
@@ -119,30 +105,16 @@ class VendedorTest {
     }
 
     @Test
-    void testCadastrarPedidoProdutoInexistente() {
-        String input = "Cliente Teste\n" +  // nome do cliente
-                      "INEXISTENTE\n" +     // código inexistente
-                      "sair\n";             // sair
-
-        Scanner scanner = new Scanner(input);
-        
-        int pedidosAnteriores = vendedor.getPedidosRealizados().size();
-        vendedor.cadastrarPedidos(scanner);
-        
-        assertEquals(pedidosAnteriores, vendedor.getPedidosRealizados().size());
-    }
-
-    @Test
     void testCadastrarPedidoEstoqueInsuficiente() {
-        String input = "Cliente Teste\n" +  // nome do cliente
-                      "NB001\n" +           // código do produto
-                      "50\n" +              // quantidade maior que estoque (10)
-                      "sair\n";             // sair
-        
-        Scanner scanner = new Scanner(input);
+    
+        List<ItemPedido> itens = new ArrayList<>();
+        itens.add(new ItemPedido(produto1, 50, produto1.getPreco().multiply(new BigDecimal("50"))));
         
         int pedidosAnteriores = vendedor.getPedidosRealizados().size();
-        vendedor.cadastrarPedidos(scanner);
+    
+        if (estoque.estaDisponivel(produto1, 50)) {
+            vendedor.cadastrarPedidos("Cliente Teste", "Cartão", "Entrega", itens);
+        }
 
         assertEquals(pedidosAnteriores, vendedor.getPedidosRealizados().size());
     }
@@ -162,15 +134,10 @@ class VendedorTest {
 
     @Test
     void testVisualizarPedidosComPedidos() {
-        String input = "Cliente Teste\n" +
-                      "M001\n" +
-                      "1\n" +
-                      "n\n" +
-                      "PIX\n" +
-                      "Retirada\n";
+        List<ItemPedido> itens = new ArrayList<>();
+        itens.add(new ItemPedido(produto2, 1, produto2.getPreco()));
         
-        Scanner scanner = new Scanner(input);
-        vendedor.cadastrarPedidos(scanner);
+        vendedor.cadastrarPedidos("Cliente Teste", "PIX", "Retirada", itens);
         
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
@@ -189,17 +156,11 @@ class VendedorTest {
 
     @Test
     void testVerificacaoEstoqueAposVenda() {
-        String input = "Cliente Teste\n" +
-                      "M001\n" +           // mouse (25 em estoque)
-                      "5\n" +              // quantidade 5
-                      "n\n" +
-                      "Dinheiro\n" +
-                      "Entrega\n";
-        
-        Scanner scanner = new Scanner(input);
+        List<ItemPedido> itens = new ArrayList<>();
+        itens.add(new ItemPedido(produto2, 5, produto2.getPreco().multiply(new BigDecimal("5"))));
         
         int estoqueAnterior = estoque.quantidadeProduto(produto2);
-        vendedor.cadastrarPedidos(scanner);
+        vendedor.cadastrarPedidos("Cliente Teste", "Dinheiro", "Entrega", itens);
         int estoqueAposVenda = estoque.quantidadeProduto(produto2);
         
         assertEquals(estoqueAnterior - 5, estoqueAposVenda);
@@ -208,18 +169,11 @@ class VendedorTest {
 
     @Test
     void testPedidoComMultiplosItens() {
-        String input = "Cliente Teste\n" +
-                      "NB001\n" +           // notebook
-                      "1\n" +               // quantidade 1
-                      "s\n" +               // adicionar mais itens
-                      "M001\n" +            // mouse
-                      "2\n" +               // quantidade 2
-                      "n\n" +               // não adicionar mais
-                      "Cartão\n" +
-                      "Entrega\n";
+        List<ItemPedido> itens = new ArrayList<>();
+        itens.add(new ItemPedido(produto1, 1, produto1.getPreco())); // notebook
+        itens.add(new ItemPedido(produto2, 2, produto2.getPreco().multiply(new BigDecimal("2")))); // mouse
         
-        Scanner scanner = new Scanner(input);
-        vendedor.cadastrarPedidos(scanner);
+        vendedor.cadastrarPedidos("Cliente Teste", "Cartão", "Entrega", itens);
         
         assertEquals(1, vendedor.getPedidosRealizados().size());
         

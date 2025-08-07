@@ -6,11 +6,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import ufjf.poo.model.Unidade;
 import ufjf.poo.model.estoque.Estoque;
 import ufjf.poo.model.estoque.Produto;
+import ufjf.poo.model.pedido.ItemPedido;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.math.BigDecimal;
 import java.util.HashMap;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 class GerenteTest {
 
@@ -85,9 +87,10 @@ class GerenteTest {
 
     @Test
     void testControlaPedidosComVendedores() {
-        String inputPedido = "Cliente Teste\nM001\n1\nn\nCartão\nEntrega\n";
-        Scanner scanner = new Scanner(inputPedido);
-        vendedor1.cadastrarPedidos(scanner);
+        List<ItemPedido> itens = new ArrayList<>();
+        itens.add(new ItemPedido(produto2, 1, produto2.getPreco()));
+        
+        vendedor1.cadastrarPedidos("Cliente Teste", "Cartão", "Entrega", itens);
         
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
@@ -220,9 +223,10 @@ class GerenteTest {
         assertEquals(15, estoque.quantidadeProduto(produtoNovo));
         
         // vendedor faz pedido
-        String inputPedido = "Cliente TESTE\nH001\n2\nn\nPIX\nRetirada\n";
-        Scanner scanner = new Scanner(inputPedido);
-        vendedor1.cadastrarPedidos(scanner);
+        List<ItemPedido> itens = new ArrayList<>();
+        itens.add(new ItemPedido(produtoNovo, 2, produtoNovo.getPreco().multiply(new BigDecimal("2"))));
+        
+        vendedor1.cadastrarPedidos("Cliente TESTE", "PIX", "Retirada", itens);
         
         // verificar se pedido foi criado
         assertEquals(1, vendedor1.getPedidosRealizados().size());
