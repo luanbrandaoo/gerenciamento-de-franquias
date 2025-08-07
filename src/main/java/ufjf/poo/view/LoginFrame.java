@@ -92,7 +92,6 @@ public class LoginFrame extends JFrame {
                     new SwingWorker<MenuPrincipalFrame, Void>() {
                         @Override
                         protected MenuPrincipalFrame doInBackground() throws Exception {
-                            // Este é o trabalho pesado: criar a tela do menu
                             return new MenuPrincipalFrame(session, usuariosCadastrados, unidadesCadastradas);
                         }
 

@@ -11,11 +11,9 @@ public class DataModel {
     private List<Unidade> unidades;
     private List<Pedido> pedidos;
     
-    // Construtor padrão (sem argumentos) - NECESSÁRIO para o DataPersistence
     public DataModel() {
     }
 
-    // Construtor com todos os dados
     public DataModel(List<Usuario> usuarios, List<Unidade> unidades, List<Pedido> pedidos) {
         this.usuarios = usuarios;
         this.unidades = unidades;

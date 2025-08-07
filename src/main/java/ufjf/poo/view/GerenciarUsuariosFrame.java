@@ -13,7 +13,7 @@ public class GerenciarUsuariosFrame extends JFrame {
 
     private final Session session;
     private final List<Usuario> todosUsuarios;
-    private final List<Unidade> todasUnidades; // Adicionado para aceitar a lista de unidades
+    private final List<Unidade> todasUnidades; 
     private DefaultTableModel modeloTabelaUsuarios;
     private JTable tabelaUsuarios;
 

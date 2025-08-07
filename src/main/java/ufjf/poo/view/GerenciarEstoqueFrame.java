@@ -3,9 +3,9 @@ package ufjf.poo.view;
 import ufjf.poo.model.estoque.Estoque;
 import ufjf.poo.model.estoque.Produto;
 import ufjf.poo.model.usuario.Gerente;
-import ufjf.poo.model.Unidade; // Import necessário para o construtor
-import ufjf.poo.model.Session; // Import necessário para o construtor
-import ufjf.poo.dados.DataPersistence; // Import necessário para salvar dados
+import ufjf.poo.model.Unidade; 
+import ufjf.poo.model.Session; 
+import ufjf.poo.dados.DataPersistence; 
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -15,50 +15,41 @@ import java.awt.event.WindowEvent;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * Janela para o Gerente gerenciar o estoque da sua unidade.
- * Permite adicionar, remover e atualizar produtos no estoque.
- */
 public class GerenciarEstoqueFrame extends JFrame {
 
     private final Estoque estoque;
     private final Gerente gerente;
-    private final List<Unidade> todasUnidades; // Usado para persistência de dados
-    private final List<Produto> todosProdutos; // Usado para persistência de dados
+    private final List<Unidade> todasUnidades; 
+    private final List<Produto> todosProdutos; 
 
     private DefaultTableModel modeloTabelaEstoque;
     private JTable tabelaEstoque;
     private JTextField campoCodigo, campoNome, campoPreco, campoQuantidade;
 
-    /**
-     * Construtor da janela de gerenciamento de estoque.
-     *
-     * @param gerente O objeto Gerente logado, que possui acesso ao estoque.
-     * @param todasUnidades Lista de todas as unidades, necessária para a persistência.
-     */
+    
     public GerenciarEstoqueFrame(Gerente gerente, List<Unidade> todasUnidades) {
         this.gerente = gerente;
         this.estoque = gerente.getUnidadeFranquia().getEstoque();
         this.todasUnidades = todasUnidades;
+        
         // Pega todos os produtos do estoque das unidades para a persistência, se necessário.
-        // A lógica do DataPersistence pode precisar de todos os produtos do sistema.
         this.todosProdutos = todasUnidades.stream()
             .flatMap(unidade -> unidade.getEstoque().produtosEmEstoque().stream())
             .distinct()
             .toList();
 
-        // Configurações básicas da janela
+        // Configurações da janela
         setTitle("Gerenciar Estoque - Gerente: " + gerente.getNome());
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Adiciona listener para salvar os dados ao fechar a janela
+        // listener para salvar os dados ao fechar a janela
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 // Salva todos os dados para persistência
-                DataPersistence.saveAllData(null, todasUnidades, null); // Assumindo que o primeiro e o último parâmetro não são necessários aqui
+                DataPersistence.saveAllData(null, todasUnidades, null);
             }
         });
 
@@ -75,10 +66,6 @@ public class GerenciarEstoqueFrame extends JFrame {
         setVisible(true);
     }
 
-    /**
-     * Cria e retorna o painel com a tabela de estoque.
-     * @return um JScrollPane contendo a JTable.
-     */
     private JScrollPane criarPainelTabela() {
         String[] colunas = {"Código", "Nome", "Preço", "Quantidade"};
         modeloTabelaEstoque = new DefaultTableModel(colunas, 0);
@@ -87,10 +74,6 @@ public class GerenciarEstoqueFrame extends JFrame {
         return new JScrollPane(tabelaEstoque);
     }
     
-    /**
-     * Cria e retorna o painel com os campos de entrada e botões de controle.
-     * @return um JPanel contendo os controles de interação.
-     */
     private JPanel criarPainelControles() {
         JPanel painelControles = new JPanel(new BorderLayout());
 
@@ -135,9 +118,6 @@ public class GerenciarEstoqueFrame extends JFrame {
         return painelControles;
     }
 
-    /**
-     * Preenche a tabela com os produtos e suas quantidades do estoque.
-     */
     private void preencherTabelaEstoque() {
         modeloTabelaEstoque.setRowCount(0); // Limpa a tabela antes de preencher
         for (Produto p : estoque.produtosEmEstoque()) {
@@ -145,10 +125,8 @@ public class GerenciarEstoqueFrame extends JFrame {
             modeloTabelaEstoque.addRow(new Object[]{p.getCodigo(), p.getNome(), p.getPreco(), quantidade});
         }
     }
-
-    /**
-     * Adiciona um novo produto ao estoque ou atualiza um existente.
-     */
+    
+     //Adiciona um novo produto ao estoque ou atualiza um existente.
     private void adicionarProduto() {
         try {
             String codigo = campoCodigo.getText().trim();
@@ -206,9 +184,6 @@ public class GerenciarEstoqueFrame extends JFrame {
         }
     }
 
-    /**
-     * Remove um produto selecionado da tabela e do estoque.
-     */
     private void removerProduto() {
         int linhaSelecionada = tabelaEstoque.getSelectedRow();
         if (linhaSelecionada == -1) {
@@ -229,9 +204,6 @@ public class GerenciarEstoqueFrame extends JFrame {
         }
     }
 
-    /**
-     * Limpa todos os campos de texto do formulário.
-     */
     private void limparCampos() {
         campoCodigo.setText("");
         campoNome.setText("");

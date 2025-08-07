@@ -157,7 +157,6 @@ public class MenuPrincipalFrame extends JFrame {
         painel.add(btnGerenciarEstoque);
         painel.add(Box.createVerticalStrut(10));
         
-        // Adicione aqui os botões para as outras funcionalidades do Gerente, como "Controlar Pedidos" e "Relatórios"
     }
 
     private void adicionarBotaoVendedor(JPanel painel, Vendedor vendedor) {

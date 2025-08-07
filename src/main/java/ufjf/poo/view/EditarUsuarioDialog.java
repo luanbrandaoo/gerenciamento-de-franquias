@@ -76,7 +76,7 @@ public class EditarUsuarioDialog extends JDialog {
         String novaSenha = campoSenha.getText();
         String novoTipo = (String) campoTipoUsuario.getSelectedItem();
 
-        // Validação básica dos campos
+        // Validação dos campos
         if (novoNome.isEmpty() || novoEmail.isEmpty() || novaSenha.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Todos os campos devem ser preenchidos.", "Erro de Validação", JOptionPane.ERROR_MESSAGE);
             return;
