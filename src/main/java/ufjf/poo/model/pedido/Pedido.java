@@ -16,7 +16,7 @@ import java.util.List;
 
 public class Pedido {
     
-    private List<ItemPedido> itens;
+    private final List<ItemPedido> itens;
     private BigDecimal valorTotal;
     private final Vendedor vendedor;
     private final Date data;

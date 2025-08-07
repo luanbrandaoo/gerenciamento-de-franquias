@@ -63,7 +63,7 @@ class DonoCadastroUsuarioTest {
         );
 
         assertNotNull(novoVendedor);
-        assertTrue(novoVendedor instanceof Vendedor);
+        assertInstanceOf(Vendedor.class, novoVendedor);
         assertEquals("Maria Vendedora", novoVendedor.getNome());
         assertEquals("maria@empresa.com", novoVendedor.getEmail());
         assertEquals(2, todosUsuarios.size());
@@ -82,7 +82,7 @@ class DonoCadastroUsuarioTest {
         );
 
         assertNotNull(novoGerente);
-        assertTrue(novoGerente instanceof Gerente);
+        assertInstanceOf(Gerente.class, novoGerente);
         assertEquals("Carlos Gerente", novoGerente.getNome());
         assertEquals("carlos@empresa.com", novoGerente.getEmail());
         assertEquals(2, todosUsuarios.size());
@@ -101,7 +101,7 @@ class DonoCadastroUsuarioTest {
         );
 
         assertNotNull(novoDono);
-        assertTrue(novoDono instanceof Dono);
+        assertInstanceOf(Dono.class, novoDono);
         assertEquals("Ana Dona", novoDono.getNome());
         assertEquals("ana@empresa.com", novoDono.getEmail());
         assertEquals(2, todosUsuarios.size());

@@ -8,10 +8,10 @@ import java.awt.*;
 public class EditarUsuarioDialog extends JDialog {
 
     private final Usuario usuarioParaEditar;
-    private JTextField campoNome;
-    private JTextField campoEmail;
-    private JTextField campoSenha;
-    private JComboBox<String> campoTipoUsuario;
+    private final JTextField campoNome;
+    private final JTextField campoEmail;
+    private final JTextField campoSenha;
+    private final JComboBox<String> campoTipoUsuario;
     private boolean salvou = false;
 
     public EditarUsuarioDialog(JFrame owner, Usuario usuario) {

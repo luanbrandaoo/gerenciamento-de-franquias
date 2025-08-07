@@ -17,11 +17,11 @@ public class CadastrarPedidoFrame extends JFrame {
     private final Vendedor vendedor;
     private final Estoque estoque;
 
-    private DefaultTableModel modeloTabelaProdutos;
-    private JTable tabelaProdutos;
-    private JTextField campoNomeCliente;
-    private JTextField campoFormaPagamento;
-    private JTextField campoFormaEntrega;
+    private final DefaultTableModel modeloTabelaProdutos;
+    private final JTable tabelaProdutos;
+    private final JTextField campoNomeCliente;
+    private final JTextField campoFormaPagamento;
+    private final JTextField campoFormaEntrega;
 
     public CadastrarPedidoFrame(Vendedor vendedor) {
         this.vendedor = vendedor;

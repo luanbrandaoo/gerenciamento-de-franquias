@@ -11,8 +11,8 @@ import java.text.SimpleDateFormat;
 public class VisualizarPedidosFrame extends JFrame {
 
     private final Vendedor vendedor;
-    private DefaultTableModel modeloTabelaPedidos;
-    private JTable tabelaPedidos;
+    private final DefaultTableModel modeloTabelaPedidos;
+    private final JTable tabelaPedidos;
 
     public VisualizarPedidosFrame(Vendedor vendedor) {
         this.vendedor = vendedor;

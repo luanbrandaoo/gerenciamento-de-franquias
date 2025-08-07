@@ -7,7 +7,7 @@ import static java.lang.Integer.max;
 
 public class Estoque {
     
-    private Map<Produto, Integer> produtos;
+    private final Map<Produto, Integer> produtos;
 
     public Estoque(Map<Produto, Integer> produtos) {
         this.produtos = produtos;

@@ -7,7 +7,7 @@ import ufjf.poo.model.estoque.Produto;
 
 public class Gerente extends Usuario {
 
-    private Unidade unidadeFranquia;
+    private final Unidade unidadeFranquia;
     //private List<Vendedor> equipeDeVendedores;
 
     public Gerente(String nome, int id, String key, String email, Unidade unidadeFranquia) {

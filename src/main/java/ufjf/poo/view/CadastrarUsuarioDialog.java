@@ -19,8 +19,8 @@ public class CadastrarUsuarioDialog extends JDialog {
     private JComboBox<Unidade> campoUnidade;
     private JLabel labelUnidade;
     
-    private List<Usuario> todosUsuarios;
-    private List<Unidade> todasUnidades;
+    private final List<Usuario> todosUsuarios;
+    private final List<Unidade> todasUnidades;
     private Usuario novoUsuario;
     private boolean salvou = false;
     
@@ -143,24 +143,28 @@ public class CadastrarUsuarioDialog extends JDialog {
             int novoId = gerarNovoId();
             
             // criar usuário baseado no tipo
-            switch (tipoUsuario) {
-                case "Vendedor":
-                    Unidade unidadeVendedor = (Unidade) campoUnidade.getSelectedItem();
-                    novoUsuario = new Vendedor(nome, novoId, senha, email, unidadeVendedor.getEstoque());
-                    unidadeVendedor.adicionarVendedor((Vendedor) novoUsuario);
-                    break;
-                    
-                case "Gerente":
-                    Unidade unidadeGerente = (Unidade) campoUnidade.getSelectedItem();
-                    novoUsuario = new Gerente(nome, novoId, senha, email, unidadeGerente);
-                    unidadeGerente.trocarGerente((Gerente) novoUsuario);
-                    break;
-                    
-                case "Dono":
-                    novoUsuario = new Dono(nome, novoId, senha, email, todasUnidades);
-                    break;
+            if (tipoUsuario != null) {
+                switch (tipoUsuario) {
+                    case "Vendedor":
+                        Unidade unidadeVendedor = (Unidade) campoUnidade.getSelectedItem();
+                        assert unidadeVendedor != null;
+                        novoUsuario = new Vendedor(nome, novoId, senha, email, unidadeVendedor.getEstoque());
+                        unidadeVendedor.adicionarVendedor((Vendedor) novoUsuario);
+                        break;
+
+                    case "Gerente":
+                        Unidade unidadeGerente = (Unidade) campoUnidade.getSelectedItem();
+                        novoUsuario = new Gerente(nome, novoId, senha, email, unidadeGerente);
+                        assert unidadeGerente != null;
+                        unidadeGerente.trocarGerente((Gerente) novoUsuario);
+                        break;
+
+                    case "Dono":
+                        novoUsuario = new Dono(nome, novoId, senha, email, todasUnidades);
+                        break;
+                }
             }
-            
+
             todosUsuarios.add(novoUsuario);
             salvou = true;
             

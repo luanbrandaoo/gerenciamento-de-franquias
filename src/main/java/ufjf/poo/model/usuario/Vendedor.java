@@ -10,8 +10,8 @@ import ufjf.poo.model.pedido.ItemPedido;
 
 public class Vendedor extends Usuario {
 
-    private List<Pedido> pedidosRealizados;
-    private Estoque estoqueDisponivel;
+    private final List<Pedido> pedidosRealizados;
+    private final Estoque estoqueDisponivel;
     private static int proximoIdPedido = 0;
 
     public Vendedor(String nome, int id, String key, String email, Estoque estoqueDisponivel) {

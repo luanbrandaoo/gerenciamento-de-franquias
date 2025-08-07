@@ -10,7 +10,7 @@ import ufjf.poo.model.pedido.Pedido;
 
 public class Dono extends Usuario {
     
-    private List<Unidade> unidadesGerenciadas;
+    private final List<Unidade> unidadesGerenciadas;
 
     public Dono(String nome, int id, String key, String email, List<Unidade> unidadesGerenciadas) {
         super(nome, id, key, email);
@@ -181,7 +181,7 @@ public class Dono extends Usuario {
                     .max()
                     .orElse(0) + 1;
             
-            Usuario novoUsuario = null;
+            Usuario novoUsuario;
             
             switch (tipoUsuario.toLowerCase()) {
                 case "vendedor":

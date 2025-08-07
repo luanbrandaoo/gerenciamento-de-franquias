@@ -13,8 +13,8 @@ public class GerenciarUsuariosFrame extends JFrame {
     private final Session session;
     private final List<Usuario> todosUsuarios;
     private final List<Unidade> todasUnidades; 
-    private DefaultTableModel modeloTabelaUsuarios;
-    private JTable tabelaUsuarios;
+    private final DefaultTableModel modeloTabelaUsuarios;
+    private final JTable tabelaUsuarios;
 
     public GerenciarUsuariosFrame(Session session, List<Usuario> todosUsuarios, List<Unidade> todasUnidades) {
         this.session = session;

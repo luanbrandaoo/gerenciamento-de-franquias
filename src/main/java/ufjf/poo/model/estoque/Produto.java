@@ -8,7 +8,7 @@ import ufjf.poo.exception.CodigoProdutoInvalidoException;
 public class Produto {
     
     private String nome;
-    private String codigo;
+    private final String codigo;
     private BigDecimal preco;
     
     public Produto(String nome , String codigo, BigDecimal preco){

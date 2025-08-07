@@ -11,12 +11,12 @@ import ufjf.poo.model.pedido.Pedido;
 
 public class Unidade {
     
-    private int id;
-    private String nome;
-    private String endereco;
+    private final int id;
+    private final String nome;
+    private final String endereco;
     private Gerente gerente;
-    private List<Vendedor> vendedores;
-    private Estoque estoque;
+    private final List<Vendedor> vendedores;
+    private final Estoque estoque;
 
     public Unidade(int id, String nome, String endereco, Estoque estoque) {
         this.id = id;

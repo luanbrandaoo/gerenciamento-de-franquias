@@ -14,8 +14,8 @@ public class LoginFrame extends JFrame {
     private final Session session;
     private final List<Usuario> usuariosCadastrados;
     private final List<Unidade> unidadesCadastradas;
-    private JTextField campoEmail;
-    private JPasswordField campoChave;
+    private final JTextField campoEmail;
+    private final JPasswordField campoChave;
 
     public LoginFrame(Session session, List<Usuario> usuarios, List<Unidade> unidades) {
         this.session = session;

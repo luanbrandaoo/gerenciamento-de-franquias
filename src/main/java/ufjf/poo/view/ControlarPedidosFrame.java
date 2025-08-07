@@ -13,8 +13,8 @@ import java.util.List;
 public class ControlarPedidosFrame extends JFrame {
 
     private final Gerente gerente;
-    private DefaultTableModel modeloTabelaPedidos;
-    private JTable tabelaPedidos;
+    private final DefaultTableModel modeloTabelaPedidos;
+    private final JTable tabelaPedidos;
 
     public ControlarPedidosFrame(Gerente gerente) {
         this.gerente = gerente;
