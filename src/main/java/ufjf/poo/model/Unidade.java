@@ -2,13 +2,11 @@ package ufjf.poo.model;
 
 import java.math.BigDecimal;
 import ufjf.poo.model.estoque.Estoque;
-import ufjf.poo.model.estoque.Produto;
 import ufjf.poo.model.usuario.Gerente;
 import ufjf.poo.model.usuario.Vendedor;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import ufjf.poo.model.pedido.Pedido;
 
 public class Unidade {
@@ -96,5 +94,10 @@ public class Unidade {
     
     public Gerente getGerente(){
         return gerente;
+    }
+    
+    @Override
+    public String toString() {
+        return nome + " (ID: " + id + ")";
     }
 }

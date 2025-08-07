@@ -163,4 +163,61 @@ public class Dono extends Usuario {
             }
         }
     }
+
+    public Usuario cadastrarUsuario(String nome, String email, String senha, String tipoUsuario, 
+                                   Unidade unidade, java.util.List<Usuario> todosUsuarios) {
+        try {
+            // verificar se email já existe
+            for (Usuario u : todosUsuarios) {
+                if (u.getEmail().equalsIgnoreCase(email)) {
+                    System.out.println("Erro: Email já cadastrado no sistema.");
+                    return null;
+                }
+            }
+            
+            // gerar ID único
+            int novoId = todosUsuarios.stream()
+                    .mapToInt(Usuario::getId)
+                    .max()
+                    .orElse(0) + 1;
+            
+            Usuario novoUsuario = null;
+            
+            switch (tipoUsuario.toLowerCase()) {
+                case "vendedor":
+                    if (unidade == null) {
+                        System.out.println("Erro: Unidade é obrigatória para Vendedor.");
+                        return null;
+                    }
+                    novoUsuario = new Vendedor(nome, novoId, senha, email, unidade.getEstoque());
+                    unidade.adicionarVendedor((Vendedor) novoUsuario);
+                    break;
+                    
+                case "gerente":
+                    if (unidade == null) {
+                        System.out.println("Erro: Unidade é obrigatória para Gerente.");
+                        return null;
+                    }
+                    novoUsuario = new Gerente(nome, novoId, senha, email, unidade);
+                    unidade.trocarGerente((Gerente) novoUsuario);
+                    break;
+                    
+                case "dono":
+                    novoUsuario = new Dono(nome, novoId, senha, email, unidadesGerenciadas);
+                    break;
+                    
+                default:
+                    System.out.println("Erro: Tipo de usuário inválido: " + tipoUsuario);
+                    return null;
+            }
+            
+            todosUsuarios.add(novoUsuario);
+            System.out.println("Usuário " + nome + " cadastrado com sucesso como " + tipoUsuario);
+            return novoUsuario;
+            
+        } catch (Exception e) {
+            System.out.println("Erro ao cadastrar usuário: " + e.getMessage());
+            return null;
+        }
+    }
 }

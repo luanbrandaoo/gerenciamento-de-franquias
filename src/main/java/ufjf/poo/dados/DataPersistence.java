@@ -29,10 +29,10 @@ public class DataPersistence {
 
     static {
         RuntimeTypeAdapterFactory<Usuario> usuarioAdapterFactory = RuntimeTypeAdapterFactory
-                .of(Usuario.class, "tipoUsuario")
-                .registerSubtype(Dono.class)
-                .registerSubtype(Gerente.class)
-                .registerSubtype(Vendedor.class);
+                .of(Usuario.class, "type")
+                .registerSubtype(Dono.class, "Dono")
+                .registerSubtype(Gerente.class, "Gerente")
+                .registerSubtype(Vendedor.class, "Vendedor");
 
         gson = new GsonBuilder()
                 .registerTypeAdapterFactory(usuarioAdapterFactory)
@@ -65,9 +65,18 @@ public class DataPersistence {
     }
     
     public static void saveAllData(List<Usuario> usuarios, List<Unidade> unidades, List<Pedido> pedidos) {
-        saveData(usuarios, USUARIOS_FILE);
+        saveUsuarios(usuarios);
         saveData(unidades, UNIDADES_FILE);
         saveData(pedidos, PEDIDOS_FILE);
+    }
+    
+    private static void saveUsuarios(List<Usuario> usuarios) {
+        try (FileWriter writer = new FileWriter(USUARIOS_FILE)) {
+            Type listType = new TypeToken<List<Usuario>>(){}.getType();
+            gson.toJson(usuarios, listType, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static <T> void saveData(List<T> data, String filename) {

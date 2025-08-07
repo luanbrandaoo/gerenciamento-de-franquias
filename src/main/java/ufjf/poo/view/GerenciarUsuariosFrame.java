@@ -3,7 +3,6 @@ package ufjf.poo.view;
 import ufjf.poo.model.Session;
 import ufjf.poo.model.Unidade;
 import ufjf.poo.model.usuario.Usuario;
-import ufjf.poo.dados.DataPersistence;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -114,6 +113,15 @@ public class GerenciarUsuariosFrame extends JFrame {
     }
 
     private void cadastrarUsuario() {
-        JOptionPane.showMessageDialog(this, "Funcionalidade de cadastro será implementada aqui.");
+        CadastrarUsuarioDialog dialog = new CadastrarUsuarioDialog(this, todosUsuarios, todasUnidades);
+        dialog.setVisible(true);
+        
+        if (dialog.salvou()) {
+            preencherTabelaUsuarios();
+            JOptionPane.showMessageDialog(this, 
+                "Usuário '" + dialog.getNovoUsuario().getNome() + "' cadastrado com sucesso!", 
+                "Sucesso", 
+                JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }
