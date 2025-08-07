@@ -11,7 +11,7 @@ public abstract class Usuario {
     private  String nome;
     private  int id;
     //private List <notificacao> notificacoes;
-    private final String privateKey;
+    private  String privateKey;
     private  String email;
     
     public Usuario(String nome , int id , String key, String email){
@@ -67,6 +67,10 @@ public abstract class Usuario {
         return privateKey;
     }
     
+    public void setPrivateKey(String privateKey) {
+        this.privateKey = privateKey;
+    }
+    
      public void setNome(String nome) {
         this.nome = nome;
     }
@@ -77,6 +81,5 @@ public abstract class Usuario {
     
     public void setEmail(String email) {
         this.email = email;
-    }
-            
+    }        
 }

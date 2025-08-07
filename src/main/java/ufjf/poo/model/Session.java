@@ -8,6 +8,10 @@ public class Session {
     
     private Usuario usuarioLogado;
     
+     public Session() {
+        this.usuarioLogado = null;
+    }
+    
     public void login(Usuario usuario, String privateKey) throws ChavePrivadaInvalidaException, IdUsuarioInvalidoException {
         
         if (usuario == null) {

@@ -58,7 +58,12 @@ public class CadastrarPedidoFrame extends JFrame {
         JButton botaoFinalizar = new JButton("Finalizar Pedido");
         botaoFinalizar.addActionListener(e -> finalizarPedido());
 
+        // Adiciona o botão de voltar
+        JButton botaoVoltar = new JButton("Voltar");
+        botaoVoltar.addActionListener(e -> dispose());
+
         JPanel painelBotoes = new JPanel();
+        painelBotoes.add(botaoVoltar); // Adiciona o botão de voltar
         painelBotoes.add(botaoFinalizar);
 
         painelPrincipal.add(painelDadosCliente, BorderLayout.NORTH);
@@ -78,7 +83,7 @@ public class CadastrarPedidoFrame extends JFrame {
                 p.getNome(),
                 p.getPreco(),
                 quantidadeDisponivel,
-                0 
+                0
             });
         }
     }
