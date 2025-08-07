@@ -81,7 +81,7 @@ class VendedorTest {
         
         assertEquals(pedidosAnteriores + 1, vendedor.getPedidosRealizados().size());
         
-        Pedido pedidoCriado = vendedor.getPedidosRealizados().get(0);
+        Pedido pedidoCriado = vendedor.getPedidosRealizados().getFirst();
         assertEquals("Cliente Teste", pedidoCriado.getNomeCliente());
         assertEquals("Cartão", pedidoCriado.getFormaDePagamento());
         assertEquals("Entrega", pedidoCriado.getFormaDeEntrega());
@@ -177,7 +177,7 @@ class VendedorTest {
         
         assertEquals(1, vendedor.getPedidosRealizados().size());
         
-        Pedido pedido = vendedor.getPedidosRealizados().get(0);
+        Pedido pedido = vendedor.getPedidosRealizados().getFirst();
         assertEquals(2, pedido.getItens().size());
         
         // valor total deve ser: 1 * 2500 + 2 *50 = 2600

@@ -106,8 +106,8 @@ class PedidoTest {
         
         List<ItemPedido> itens = pedido.getItens();
         assertEquals(1, itens.size());
-        assertEquals(produto1, itens.get(0).produto());
-        assertEquals(2, itens.get(0).quantidade());
+        assertEquals(produto1, itens.getFirst().produto());
+        assertEquals(2, itens.getFirst().quantidade());
         assertEquals(new BigDecimal("5000.00"), pedido.getValorTotal()); // 2500 * 2
     }
 
@@ -132,7 +132,7 @@ class PedidoTest {
 
     @Test
     void testAdicionarListaItensNula() {
-        pedido.adicionarItem((List<ItemPedido>) null);
+        pedido.adicionarItem(null);
         assertEquals(0, pedido.getItens().size());
         assertEquals(BigDecimal.ZERO, pedido.getValorTotal());
     }
@@ -154,7 +154,7 @@ class PedidoTest {
         pedido.removerItem(produto1);
         
         assertEquals(1, pedido.getItens().size());
-        assertEquals(produto2, pedido.getItens().get(0).produto());
+        assertEquals(produto2, pedido.getItens().getFirst().produto());
         assertEquals(new BigDecimal("50.00"), pedido.getValorTotal()); // apenas o mouse
     }
 

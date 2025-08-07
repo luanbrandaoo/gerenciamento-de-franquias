@@ -244,7 +244,11 @@ class DonoTest {
 
     @Test
     void testEditaUsuarioGerente() {
-        String input = "2\n" + "Ana Silva\n" + "ana.silva@email.com\n";
+        String input = """
+                2
+                Ana Silva
+                ana.silva@email.com
+                """;
 
         Scanner scanner = new Scanner(input);
         
@@ -265,7 +269,11 @@ class DonoTest {
 
     @Test
     void testEditaUsuarioVendedor() {
-        String input = "4\n" +"João Santos\n" +"\n";
+        String input = """
+                4
+                João Santos
+                
+                """;
         
         Scanner scanner = new Scanner(input);
         

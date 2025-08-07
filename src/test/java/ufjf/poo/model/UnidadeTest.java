@@ -176,7 +176,7 @@ class UnidadeTest {
         List<Vendedor> vendedores = unidade.getVendedores();
         
         assertEquals(1, vendedores.size());
-        assertEquals(vendedor1, vendedores.get(0));
+        assertEquals(vendedor1, vendedores.getFirst());
     }
 
     @Test
