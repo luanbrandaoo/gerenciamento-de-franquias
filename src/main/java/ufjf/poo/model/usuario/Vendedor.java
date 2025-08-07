@@ -1,13 +1,11 @@
 package ufjf.poo.model.usuario;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import ufjf.poo.model.pedido.Pedido;
 import java.util.List;
-import java.util.Scanner;
+
 import ufjf.poo.model.estoque.Estoque;
-import ufjf.poo.model.estoque.Produto;
 import ufjf.poo.model.pedido.ItemPedido;
 
 public class Vendedor extends Usuario {

@@ -95,7 +95,7 @@ public class Unidade {
     public Gerente getGerente(){
         return gerente;
     }
-    
+
     @Override
     public String toString() {
         return nome + " (ID: " + id + ")";

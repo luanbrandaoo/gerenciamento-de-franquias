@@ -36,6 +36,15 @@ public class GerenciarUsuariosFrame extends JFrame {
 
         preencherTabelaUsuarios();
 
+        JPanel painelBotoes = getJPanel();
+
+        painelPrincipal.add(painelBotoes, BorderLayout.SOUTH);
+
+        add(painelPrincipal);
+        setVisible(true);
+    }
+
+    private JPanel getJPanel() {
         JPanel painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
         JButton btnEditar = new JButton("Editar Usuário");
@@ -45,7 +54,7 @@ public class GerenciarUsuariosFrame extends JFrame {
         JButton btnRemover = new JButton("Remover Usuário");
         btnRemover.addActionListener(e -> removerUsuario());
         painelBotoes.add(btnRemover);
-        
+
         JButton btnCadastrar = new JButton("Cadastrar Novo");
         btnCadastrar.addActionListener(e -> cadastrarUsuario());
         painelBotoes.add(btnCadastrar);
@@ -53,13 +62,9 @@ public class GerenciarUsuariosFrame extends JFrame {
         JButton btnVoltar = new JButton("Voltar");
         btnVoltar.addActionListener(e -> dispose());
         painelBotoes.add(btnVoltar);
-        
-        painelPrincipal.add(painelBotoes, BorderLayout.SOUTH);
-
-        add(painelPrincipal);
-        setVisible(true);
+        return painelBotoes;
     }
-    
+
     private void preencherTabelaUsuarios() {
         modeloTabelaUsuarios.setRowCount(0);
         for (Usuario usuario : todosUsuarios) {
@@ -115,12 +120,12 @@ public class GerenciarUsuariosFrame extends JFrame {
     private void cadastrarUsuario() {
         CadastrarUsuarioDialog dialog = new CadastrarUsuarioDialog(this, todosUsuarios, todasUnidades);
         dialog.setVisible(true);
-        
+
         if (dialog.salvou()) {
             preencherTabelaUsuarios();
-            JOptionPane.showMessageDialog(this, 
-                "Usuário '" + dialog.getNovoUsuario().getNome() + "' cadastrado com sucesso!", 
-                "Sucesso", 
+            JOptionPane.showMessageDialog(this,
+                "Usuário '" + dialog.getNovoUsuario().getNome() + "' cadastrado com sucesso!",
+                "Sucesso",
                 JOptionPane.INFORMATION_MESSAGE);
         }
     }

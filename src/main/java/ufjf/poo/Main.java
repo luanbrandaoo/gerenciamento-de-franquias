@@ -4,7 +4,6 @@ import ufjf.poo.dados.DataModel;
 import ufjf.poo.dados.DataPersistence;
 import ufjf.poo.model.estoque.Estoque;
 import ufjf.poo.model.estoque.Produto;
-import ufjf.poo.model.pedido.Pedido;
 import ufjf.poo.model.usuario.Dono;
 import ufjf.poo.model.usuario.Gerente;
 import ufjf.poo.model.usuario.Usuario;

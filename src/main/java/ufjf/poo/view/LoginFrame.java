@@ -91,7 +91,7 @@ public class LoginFrame extends JFrame {
                     // Inicia um novo SwingWorker para construir a MenuPrincipalFrame em segundo plano
                     new SwingWorker<MenuPrincipalFrame, Void>() {
                         @Override
-                        protected MenuPrincipalFrame doInBackground() throws Exception {
+                        protected MenuPrincipalFrame doInBackground() {
                             return new MenuPrincipalFrame(session, usuariosCadastrados, unidadesCadastradas);
                         }
 

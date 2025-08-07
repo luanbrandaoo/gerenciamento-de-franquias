@@ -3,9 +3,8 @@ package ufjf.poo.view;
 import ufjf.poo.model.estoque.Estoque;
 import ufjf.poo.model.estoque.Produto;
 import ufjf.poo.model.usuario.Gerente;
-import ufjf.poo.model.Unidade; 
-import ufjf.poo.model.Session; 
-import ufjf.poo.dados.DataPersistence; 
+import ufjf.poo.model.Unidade;
+import ufjf.poo.dados.DataPersistence;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

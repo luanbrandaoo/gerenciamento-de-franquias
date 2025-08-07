@@ -3,7 +3,6 @@ package ufjf.poo.view;
 import ufjf.poo.model.estoque.Estoque;
 import ufjf.poo.model.estoque.Produto;
 import ufjf.poo.model.pedido.ItemPedido;
-import ufjf.poo.model.pedido.Pedido;
 import ufjf.poo.model.usuario.Vendedor;
 
 import javax.swing.*;
@@ -11,7 +10,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class CadastrarPedidoFrame extends JFrame {

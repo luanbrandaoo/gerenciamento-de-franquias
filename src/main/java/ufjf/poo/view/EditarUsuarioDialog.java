@@ -1,13 +1,9 @@
 package ufjf.poo.view;
 
 import ufjf.poo.model.usuario.Usuario;
-import ufjf.poo.model.usuario.Dono;
-import ufjf.poo.model.usuario.Gerente;
-import ufjf.poo.model.usuario.Vendedor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
 
 public class EditarUsuarioDialog extends JDialog {
 

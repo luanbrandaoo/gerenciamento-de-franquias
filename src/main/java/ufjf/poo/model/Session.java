@@ -18,7 +18,7 @@ public class Session {
             throw new IdUsuarioInvalidoException();
         }
         
-        if (privateKey == null || !usuario.getPrivateKey().equals(privateKey)) {
+        if (!usuario.getPrivateKey().equals(privateKey)) {
             throw new ChavePrivadaInvalidaException();
         }
         

@@ -2,14 +2,10 @@ package ufjf.poo.dados;
 
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonSyntaxException;
 
 import ufjf.poo.model.estoque.Produto;
-import ufjf.poo.model.estoque.Estoque;
 
 import java.io.IOException;
 import java.util.HashMap;

@@ -64,7 +64,7 @@ public final class RuntimeTypeAdapterFactory<T> implements TypeAdapterFactory {
 
         return new TypeAdapter<R>() {
             @Override
-            public R read(JsonReader in) throws IOException {
+            public R read(JsonReader in) {
                 JsonElement jsonElement = JsonParser.parseReader(in);
                 JsonElement labelJsonElement = jsonElement.getAsJsonObject().remove(typeFieldName);
                 

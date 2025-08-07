@@ -24,7 +24,7 @@ public class Gerente extends Usuario {
         System.out.println("\n--- Gerenciamento de Equipe ---");
         List<Vendedor> vendedores = unidadeFranquia.getVendedores();
 
-        if (vendedores.isEmpty() || vendedores == null) {
+        if (vendedores.isEmpty()) {
             System.out.println("A unidade não possui vendedores.");
             return;
         }
