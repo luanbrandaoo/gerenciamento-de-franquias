@@ -17,10 +17,10 @@ public class Dono extends Usuario {
         this.unidadesGerenciadas = new ArrayList<>(unidadesGerenciadas);
     }
     
-    public void gerenciaUnidades() {
+    public void resumoUnidades() {
         System.out.println("\n Gerenciamento de Unidades ");
         if(unidadesGerenciadas.isEmpty()){
-            System.out.println("Nenuma unidade cadastrada! ");
+            System.out.println("Nenhuma unidade cadastrada! ");
             return;
         }
         
@@ -38,10 +38,6 @@ public class Dono extends Usuario {
                 System.out.println("Nao ha gerentes subordinados para a unidade: " + u.getNome());
             }
         }
-    }
-    
-    public void gerenciaGerentes() {
-        
     }
     
     public void relatorioUnidades() {
@@ -164,7 +160,7 @@ public class Dono extends Usuario {
         }
     }
 
-    public Usuario cadastrarUsuario(String nome, String email, String senha, String tipoUsuario, 
+    public Usuario cadastrarUsuario(String nome, String email, String senha, String tipoUsuario,
                                    Unidade unidade, java.util.List<Usuario> todosUsuarios) {
         try {
             // verificar se email já existe

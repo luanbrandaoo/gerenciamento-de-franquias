@@ -86,11 +86,11 @@ class DonoTest {
     }
 
     @Test
-    void testGerenciaUnidadesComUnidades() {
+    void testResumoUnidadesComUnidades() {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
         
-        dono.gerenciaUnidades();
+        dono.resumoUnidades();
         
         String output = outputStream.toString();
         assertTrue(output.contains("Gerenciamento de Unidades"));
@@ -103,14 +103,14 @@ class DonoTest {
     }
 
     @Test
-    void testGerenciaUnidadesSemUnidades() {
+    void testResumoUnidadesSemUnidades() {
         List<Unidade> listaVazia = new ArrayList<>();
         Dono donoSemUnidades = new Dono("Pedro", 10, "senha", "pedro@email.com", listaVazia);
         
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
         
-        donoSemUnidades.gerenciaUnidades();
+        donoSemUnidades.resumoUnidades();
         
         String output = outputStream.toString();
         assertTrue(output.contains("Nenuma unidade cadastrada!"));
@@ -119,7 +119,7 @@ class DonoTest {
     }
 
     @Test
-    void testGerenciaUnidadeSemGerente() {
+    void testResumoUnidadeSemGerente() {
         Unidade unidadeSemGerente = new Unidade(3, "Franquia Norte", "Rua Norte, 789", estoque1);
         
         List<Unidade> unidadesComSemGerente = new ArrayList<>();
@@ -132,7 +132,7 @@ class DonoTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
         
-        donoComUnidadeSemGerente.gerenciaUnidades();
+        donoComUnidadeSemGerente.resumoUnidades();
         
         String output = outputStream.toString();
         assertTrue(output.contains("Nao ha gerentes subordinados para a unidade: Franquia Norte"));
@@ -351,7 +351,7 @@ class DonoTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
         
-        dono.gerenciaUnidades();
+        dono.resumoUnidades();
         String output1 = outputStream.toString();
         assertTrue(output1.contains("Franquia Centro"));
         assertTrue(output1.contains("Franquia Sul"));
