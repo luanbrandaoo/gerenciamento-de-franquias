@@ -120,7 +120,7 @@ class VendedorTest {
     }
 
     @Test
-    void testRelatorioAtividades() {
+    void testRelatorioAtividadesVazio() {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
         
