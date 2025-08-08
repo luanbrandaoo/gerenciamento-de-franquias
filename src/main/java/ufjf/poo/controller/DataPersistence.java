@@ -1,4 +1,4 @@
-package ufjf.poo.dados;
+package ufjf.poo.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

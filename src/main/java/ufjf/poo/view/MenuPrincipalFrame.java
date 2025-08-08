@@ -1,3 +1,9 @@
+/*
+Rafael Müller dos Santos Moreira 202465557C
+Luan Brandão de Oliveira 202465055A
+Marcos José de Oliveira Júnior 202135011
+ */
+
 package ufjf.poo.view;
 
 import ufjf.poo.model.Session;
@@ -6,7 +12,7 @@ import ufjf.poo.model.usuario.Dono;
 import ufjf.poo.model.usuario.Gerente;
 import ufjf.poo.model.usuario.Vendedor;
 import ufjf.poo.model.usuario.Usuario;
-import ufjf.poo.dados.DataPersistence;
+import ufjf.poo.controller.DataPersistence;
 
 import javax.swing.*;
 import java.awt.*;

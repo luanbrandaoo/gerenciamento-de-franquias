@@ -1,3 +1,9 @@
+/*
+Rafael Müller dos Santos Moreira 202465557C
+Luan Brandão de Oliveira 202465055A
+Marcos José de Oliveira Júnior 202135011
+ */
+
 package ufjf.poo.model;
 
 import java.math.BigDecimal;

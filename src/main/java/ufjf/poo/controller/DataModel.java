@@ -1,4 +1,4 @@
-package ufjf.poo.dados;
+package ufjf.poo.controller;
 
 import ufjf.poo.model.Unidade;
 import ufjf.poo.model.pedido.Pedido;

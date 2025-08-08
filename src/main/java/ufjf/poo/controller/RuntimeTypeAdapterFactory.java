@@ -1,4 +1,4 @@
-package ufjf.poo.dados;
+package ufjf.poo.controller;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
