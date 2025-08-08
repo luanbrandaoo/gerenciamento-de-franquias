@@ -88,11 +88,6 @@ class UsuarioTest {
         assertEquals("Maria Santos", usuario.getNome());
     }
 
-    @Test
-    void testSetId() {
-        usuario.setId(100);
-        assertEquals(100, usuario.getId());
-    }
 
     @Test
     void testSetEmail() {

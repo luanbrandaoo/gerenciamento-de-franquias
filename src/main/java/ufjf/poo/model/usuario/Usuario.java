@@ -30,7 +30,7 @@ public abstract class Usuario {
     }
         
         this.nome = nome;
-        this. id = id;
+        this.id = id;
         this.email = email;
         privateKey = key;
     }
@@ -67,19 +67,24 @@ public abstract class Usuario {
         return privateKey;
     }
     
-    public void setPrivateKey(String privateKey) {
-        this.privateKey = privateKey;
+    public void setPrivateKey(String key) {
+        if (key == null || key.trim().isEmpty()) {
+            throw new ChavePrivadaInvalidaException();
+        }
+        this.privateKey = key;
     }
     
      public void setNome(String nome) {
+         if (nome == null || nome.trim().isEmpty()) {
+             throw new NomeUsuarioInvalidoException();
+         }
         this.nome = nome;
-    }
-     
-    public void setId(int id) {
-        this.id = id;
     }
     
     public void setEmail(String email) {
+        if (email == null || !email.contains("@")) {
+            throw new EmailInvalidoException();
+        }
         this.email = email;
     }        
 }
