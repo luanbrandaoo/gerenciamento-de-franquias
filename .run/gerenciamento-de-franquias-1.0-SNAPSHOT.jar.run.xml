@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="gerenciamento-de-franquias-1.0-SNAPSHOT.jar" type="JarApplication">
+    <option name="JAR_PATH" value="$PROJECT_DIR$/target/gerenciamento-de-franquias-1.0-SNAPSHOT.jar" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <module name="gerenciamento-de-franquias" />
+    <method v="2" />
+  </configuration>
+</component>
