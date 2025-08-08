@@ -56,6 +56,7 @@ public class Vendedor extends Usuario {
         System.out.println("Cliente: " + novoPedido.getNomeCliente() + ", Valor Total: R$" + String.format("%.2f", novoPedido.getValorTotal()));
     }
 
+    @Override
     public void relatorioAtividades() {
 
         if (pedidosRealizados.isEmpty()) {

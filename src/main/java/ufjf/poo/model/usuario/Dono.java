@@ -39,7 +39,8 @@ public class Dono extends Usuario {
             }
         }
     }
-    
+
+    @Override
     public void relatorioAtividades() {
         System.out.println("\n Relatório Consolidado de Unidades ");
         if(unidadesGerenciadas.isEmpty()){

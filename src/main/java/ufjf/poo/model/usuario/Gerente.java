@@ -18,7 +18,8 @@ public class Gerente extends Usuario {
     public Unidade getUnidadeFranquia() {
         return unidadeFranquia;
     }
-    
+
+    @Override
     public void relatorioAtividades() {
 
         System.out.println("\n--- Gerenciamento de Equipe ---");
