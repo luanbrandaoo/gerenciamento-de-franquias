@@ -47,9 +47,7 @@ public abstract class Usuario {
         
     }
     
-    public void relatorioDeAtividades(){
-        
-    }
+    public abstract void relatorioAtividades();
     
     public String getNome(){
         return nome;

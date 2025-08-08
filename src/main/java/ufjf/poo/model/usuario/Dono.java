@@ -40,7 +40,7 @@ public class Dono extends Usuario {
         }
     }
     
-    public void relatorioUnidades() {
+    public void relatorioAtividades() {
         System.out.println("\n Relatório Consolidado de Unidades ");
         if(unidadesGerenciadas.isEmpty()){
             System.out.println("Nenhuma unidade para gerar relatório.");

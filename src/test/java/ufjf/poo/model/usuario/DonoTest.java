@@ -141,11 +141,11 @@ class DonoTest {
     }
 
     @Test
-    void testRelatorioUnidadesComUnidades() {
+    void testRelatorioUnidadesComAividades() {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
         
-        dono.relatorioUnidades();
+        dono.relatorioAtividades();
         
         String output = outputStream.toString();
         assertTrue(output.contains("Relatório Consolidado de Unidades"));
@@ -156,14 +156,14 @@ class DonoTest {
     }
 
     @Test
-    void testRelatorioUnidadesSemUnidades() {
+    void testRelatorioUnidadesSemAividades() {
         List<Unidade> listaVazia = new ArrayList<>();
         Dono donoSemUnidades = new Dono("Pedro", 10, "senha", "pedro@email.com", listaVazia);
         
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
         
-        donoSemUnidades.relatorioUnidades();
+        donoSemUnidades.relatorioAtividades();
         
         String output = outputStream.toString();
         assertTrue(output.contains("Nenhuma unidade para gerar relatório"));
@@ -375,7 +375,7 @@ class DonoTest {
 
         //verificar relatório de unidades
         outputStream.reset();
-        dono.relatorioUnidades();
+        dono.relatorioAtividades();
         String output3 = outputStream.toString();
         assertTrue(output3.contains("Relatório Consolidado"));
         

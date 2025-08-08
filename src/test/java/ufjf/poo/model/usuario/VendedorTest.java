@@ -120,11 +120,11 @@ class VendedorTest {
     }
 
     @Test
-    void testVisualizarPedidosSemPedidos() {
+    void testRelatorioAtividades() {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
         
-        vendedor.visualizarPedidos();
+        vendedor.relatorioAtividades();
         
         String output = outputStream.toString();
         assertTrue(output.contains("Sem pedidos feitos!"));
@@ -133,7 +133,7 @@ class VendedorTest {
     }
 
     @Test
-    void testVisualizarPedidosComPedidos() {
+    void testRelatorioAtividades() {
         List<ItemPedido> itens = new ArrayList<>();
         itens.add(new ItemPedido(produto2, 1, produto2.getPreco()));
         
@@ -142,7 +142,7 @@ class VendedorTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
         
-        vendedor.visualizarPedidos();
+        vendedor.relatorioAtividades();
         
         String output = outputStream.toString();
         assertTrue(output.contains("Histórico de Pedidos Realizados"));

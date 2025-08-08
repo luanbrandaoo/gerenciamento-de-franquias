@@ -54,11 +54,11 @@ class GerenteTest {
     }
 
     @Test
-    void testGerenciaEquipesComVendedores() {
+    void testRelatorioAtividadesComVendedores() {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
         
-        gerente.gerenciaEquipes();
+        gerente.relatorioAtividades();
         
         String output = outputStream.toString();
         assertTrue(output.contains("Gerenciamento de Equipe"));
@@ -70,14 +70,14 @@ class GerenteTest {
     }
 
     @Test
-    void testGerenciaEquipesSemVendedores() {
+    void testRelatorioAtividadesSemVendedores() {
         Unidade unidadeVazia = new Unidade(2, "Franquia Vazia", "Rua Vazia, 456", estoque);
         Gerente gerenteVazio = new Gerente("Carlos", 4, "senha000", "carlos@email.com", unidadeVazia);
         
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
         
-        gerenteVazio.gerenciaEquipes();
+        gerenteVazio.relatorioAtividades();
         
         String output = outputStream.toString();
         assertTrue(output.contains("A unidade não possui vendedores"));

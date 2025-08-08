@@ -19,7 +19,7 @@ public class Gerente extends Usuario {
         return unidadeFranquia;
     }
     
-    public void gerenciaEquipes() {
+    public void relatorioAtividades() {
 
         System.out.println("\n--- Gerenciamento de Equipe ---");
         List<Vendedor> vendedores = unidadeFranquia.getVendedores();
@@ -50,7 +50,7 @@ public class Gerente extends Usuario {
 
         for (Vendedor v : vendedores) {
             System.out.println("\nPedidos do Vendedor: " + v.getNome());
-            v.visualizarPedidos();
+            v.relatorioAtividades();
         }
 
     }
