@@ -43,10 +43,6 @@ public abstract class Usuario {
         
     }
     
-    public void apagarNotificacao(){
-        
-    }
-    
     public abstract void relatorioAtividades();
     
     public String getNome(){
