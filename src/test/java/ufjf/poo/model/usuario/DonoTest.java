@@ -113,7 +113,7 @@ class DonoTest {
         donoSemUnidades.resumoUnidades();
         
         String output = outputStream.toString();
-        assertTrue(output.contains("Nenuma unidade cadastrada!"));
+        assertTrue(output.contains("Nenhuma unidade cadastrada!"));
         
         System.setOut(System.out);
     }
