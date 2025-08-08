@@ -2,14 +2,10 @@ package ufjf.poo.model.pedido;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+
+import ufjf.poo.exception.*;
 import ufjf.poo.model.estoque.Produto;
 import ufjf.poo.model.usuario.Vendedor;
-import ufjf.poo.exception.IdPedidoInvalidoException;
-import ufjf.poo.exception.NomeClienteInvalidoException;
-import ufjf.poo.exception.FormaPagamentoInvalidaException;
-import ufjf.poo.exception.FormaEntregaInvalidaException;
-import ufjf.poo.exception.ProdutoNuloException;
-import ufjf.poo.exception.StatusPedidoInvalidoException;
 
 import java.util.Date;
 import java.util.List;
@@ -42,7 +38,8 @@ public class Pedido {
         if(formaDeEntrega == null || formaDeEntrega.trim().isEmpty())
             throw new FormaEntregaInvalidaException();
         
-         // TODO validar vendedor
+        if(vendedor == null)
+            throw new VendedorInvalidoException();
         
         this.idPedido = idPedido;
         this.nomeCliente = nomeCliente;
