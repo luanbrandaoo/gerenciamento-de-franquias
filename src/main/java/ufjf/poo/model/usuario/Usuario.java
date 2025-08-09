@@ -6,10 +6,10 @@ Marcos José de Oliveira Júnior 202135011
 
 package ufjf.poo.model.usuario;
 
-import ufjf.poo.exception.NomeUsuarioInvalidoException;
-import ufjf.poo.exception.IdUsuarioInvalidoException;
-import ufjf.poo.exception.EmailInvalidoException;
 import ufjf.poo.exception.ChavePrivadaInvalidaException;
+import ufjf.poo.exception.EmailInvalidoException;
+import ufjf.poo.exception.IdUsuarioInvalidoException;
+import ufjf.poo.exception.NomeUsuarioInvalidoException;
 
 
 public abstract class Usuario {
@@ -80,5 +80,8 @@ public abstract class Usuario {
             throw new EmailInvalidoException();
         }
         this.email = email;
+    }
+    public String getType() {
+        return type;
     }
 }
