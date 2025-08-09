@@ -53,7 +53,7 @@ public class CadastrarPedidoFrame extends JFrame {
         painelDadosCliente.add(new JLabel("Forma de Entrega:"));
         painelDadosCliente.add(campoFormaEntrega);
 
-        String[] colunas = {"Nome", "Código", "Preço", "Disponível", "Quant. Pedida"};
+        String[] colunas = {"Código", "Nome", "Preço", "Disponível", "Quant. Pedida"};
         modeloTabelaProdutos = new DefaultTableModel(colunas, 0);
         tabelaProdutos = new JTable(modeloTabelaProdutos);
         JScrollPane scrollPane = new JScrollPane(tabelaProdutos);
