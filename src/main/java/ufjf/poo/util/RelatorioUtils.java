@@ -154,7 +154,7 @@ public class RelatorioUtils {
             relatorio.append("ID do pedido: ").append(pedido.getIdPedido()).append("\n");
             relatorio.append("Cliente: ").append(pedido.getNomeCliente()).append("\n");
             relatorio.append("Data: ").append(sdf.format(pedido.getDataPedido())).append("\n");
-            relatorio.append("Vendedor: ").append(pedido.getVendedor()).append("\n");
+            relatorio.append("Vendedor: ").append(vendedor.getNome()).append("\n");
             relatorio.append("Status: ").append(pedido.getStatus()).append("\n");
             relatorio.append("Forma de Pagamento: ").append(pedido.getFormaDePagamento()).append("\n");
             relatorio.append("Forma de Entrega: ").append(pedido.getFormaDeEntrega()).append("\n");
