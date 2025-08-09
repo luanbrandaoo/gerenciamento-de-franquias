@@ -2,7 +2,9 @@ package ufjf.poo.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import ufjf.poo.exception.DataPersistenceException;
 import ufjf.poo.model.Unidade;
 import ufjf.poo.model.estoque.Produto;
 import ufjf.poo.model.pedido.Pedido;
@@ -41,6 +43,13 @@ public class DataPersistence {
                 .create();
     }
 
+    private static void validateData(List<Usuario> usuarios, List<Unidade> unidades, List<Pedido> pedidos) {
+        if (usuarios == null || unidades == null || pedidos == null) {
+            throw new IllegalArgumentException("As listas de dados não podem ser nulas");
+        }
+    }
+
+
     public static DataModel loadAllData() {
         DataModel dados = new DataModel();
         
@@ -57,26 +66,22 @@ public class DataPersistence {
 
     private static <T> List<T> loadData(String filename, Type typeOfT) {
         try (FileReader reader = new FileReader(filename)) {
-            return gson.fromJson(reader, typeOfT);
+            List<T> data = gson.fromJson(reader, typeOfT);
+            return data != null ? data : new ArrayList<>();
         } catch (IOException e) {
             System.out.println("Arquivo de " + filename.replace(".json", "") + " não encontrado. Iniciando com dados padrão.");
             return null;
+        } catch (JsonSyntaxException e) {
+            throw new DataPersistenceException("Erro ao ler arquivo " + filename, e);
         }
+
     }
     
     public static void saveAllData(List<Usuario> usuarios, List<Unidade> unidades, List<Pedido> pedidos) {
-        saveUsuarios(usuarios);
+        validateData(usuarios, unidades, pedidos);
+        saveData(usuarios, USUARIOS_FILE);
         saveData(unidades, UNIDADES_FILE);
         saveData(pedidos, PEDIDOS_FILE);
-    }
-    
-    private static void saveUsuarios(List<Usuario> usuarios) {
-        try (FileWriter writer = new FileWriter(USUARIOS_FILE)) {
-            Type listType = new TypeToken<List<Usuario>>(){}.getType();
-            gson.toJson(usuarios, listType, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private static <T> void saveData(List<T> data, String filename) {
@@ -84,6 +89,20 @@ public class DataPersistence {
             gson.toJson(data, writer);
         } catch (IOException e) {
             e.printStackTrace();
+            throw new DataPersistenceException("Erro ao salvar arquivo " + filename, e);
         }
     }
+
+    public static void savePedido(List<Pedido> pedidos) {
+        saveAllData(loadAllData().getUsuarios(), loadAllData().getUnidades(), pedidos);
+    }
+
+    public static void saveUsuario(List<Usuario> usuarios) {
+        saveAllData(usuarios, loadAllData().getUnidades(), loadAllData().getPedidos());
+    }
+
+    public static void saveUnidade(List<Unidade> unidades) {
+        saveAllData(loadAllData().getUsuarios(), unidades, loadAllData().getPedidos());
+    }
+
 }
