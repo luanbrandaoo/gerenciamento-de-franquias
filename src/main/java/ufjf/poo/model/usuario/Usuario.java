@@ -19,6 +19,7 @@ public abstract class Usuario {
     //private List <notificacao> notificacoes;
     private  String privateKey;
     private  String email;
+    private final static String type = "Usuario";
     
     public Usuario(String nome , int id , String key, String email){
         
@@ -86,5 +87,5 @@ public abstract class Usuario {
             throw new EmailInvalidoException();
         }
         this.email = email;
-    }        
+    }
 }
