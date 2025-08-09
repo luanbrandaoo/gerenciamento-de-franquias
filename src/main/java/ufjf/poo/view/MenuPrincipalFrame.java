@@ -145,14 +145,19 @@ public class MenuPrincipalFrame extends JFrame {
             e -> new GerenciarUsuariosFrame(session, todosUsuarios, todasUnidades).setVisible(true)
         );
         painel.add(btnGerenciarUsuarios);
+        painel.add(Box.createVerticalStrut(10));
+        
+        JButton btnRelatorios = criarBotao(
+            "Visualizar Relatórios",
+            e -> new RelatorioFrame(session.getUsuarioLogado()).setVisible(true)
+        );
+        painel.add(btnRelatorios);
         painel.add(Box.createVerticalStrut(15));
     }
     
     // método para adicionar os botões do Gerente
     private void adicionarBotaoGerente(JPanel painel, Gerente gerente) {
         
-        Unidade unidadeEspecifica =  gerente.getUnidadeFranquia();
-                        
         JButton btnGerenciarEquipe = criarBotao(
             "Gerenciar Equipe de Vendas",
             e -> new GerenciarUsuariosFrame(session, gerente).setVisible(true)
@@ -165,6 +170,13 @@ public class MenuPrincipalFrame extends JFrame {
             e -> new GerenciarEstoqueFrame(gerente, todasUnidades).setVisible(true)
         );
         painel.add(btnGerenciarEstoque);
+        painel.add(Box.createVerticalStrut(10));
+        
+        JButton btnRelatorios = criarBotao(
+            "Visualizar Relatórios",
+            e -> new RelatorioFrame(gerente).setVisible(true)
+        );
+        painel.add(btnRelatorios);
         painel.add(Box.createVerticalStrut(10));
         
     }
@@ -182,6 +194,13 @@ public class MenuPrincipalFrame extends JFrame {
             e -> new VisualizarPedidosFrame(vendedor).setVisible(true)
         );
         painel.add(btnVisualizarPedidos);
+        painel.add(Box.createVerticalStrut(10));
+        
+        JButton btnRelatorios = criarBotao(
+            "Visualizar Relatórios",
+            e -> new RelatorioFrame(vendedor).setVisible(true)
+        );
+        painel.add(btnRelatorios);
         painel.add(Box.createVerticalStrut(15));
     }
 

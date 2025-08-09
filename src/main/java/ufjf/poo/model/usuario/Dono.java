@@ -23,6 +23,10 @@ public class Dono extends Usuario {
         this.unidadesGerenciadas = new ArrayList<>(unidadesGerenciadas);
     }
     
+    public List<Unidade> getUnidadesGerenciadas() {
+        return unidadesGerenciadas;
+    }
+    
     public void resumoUnidades() {
         System.out.println("\n Gerenciamento de Unidades ");
         if(unidadesGerenciadas.isEmpty()){
