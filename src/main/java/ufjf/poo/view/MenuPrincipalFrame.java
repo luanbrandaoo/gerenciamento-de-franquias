@@ -36,28 +36,7 @@ public class MenuPrincipalFrame extends JFrame {
         configurarFechamento();
         inicializarInterface();
     }
-   /* 
-    private void inicializaListaVendedores() {
-    
-    
-        Usuario u = Session.getUsuarioLogado;
-        if(
-    
-    
-        List<Vendedor> vendedores;
-        for (Usuario usuario : todosUsuarios) {
-            String tipoUsuario = usuario.getClass().getSimpleName();
-    
-            if(tpoUsuario == Vendedor)
-            modeloTabelaUsuarios.addRow(new Object[]{
-                usuario.getId(),
-                usuario.getNome(),
-                usuario.getEmail(),
-                tipoUsuario
-            });
-        }
-    }
-*/
+   
     private void configurarJanela() {
         setTitle("Menu Principal - " + session.getUsuarioLogado().getNome());
         setSize(800, 600);
