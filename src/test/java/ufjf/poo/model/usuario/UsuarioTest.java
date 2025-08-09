@@ -14,7 +14,7 @@ class UsuarioTest {
 
     @BeforeEach
     void setUp() {
-        usuario = new Usuario("João Silva", 1, "senha123", "joao@email.com") {
+        usuario = new Usuario("João Silva", 1, "senha123", "joao@email.com","usuario") {
             @Override
             public void relatorioAtividades() {}
         };
@@ -31,7 +31,7 @@ class UsuarioTest {
     @Test
     void testCriacaoUsuarioComNomeNulo() {
         assertThrows(NomeUsuarioInvalidoException.class, () -> {
-            new Usuario(null, 1, "senha123", "joao@email.com") {
+            new Usuario(null, 1, "senha123", "joao@email.com", "usuario") {
                 @Override
                 public void relatorioAtividades() {}
             };
@@ -41,7 +41,7 @@ class UsuarioTest {
     @Test
     void testCriacaoUsuarioComNomeVazio() {
         assertThrows(NomeUsuarioInvalidoException.class, () -> {
-            new Usuario("", 1, "senha123", "joao@email.com") {
+            new Usuario("", 1, "senha123", "joao@email.com", "usuario") {
                 @Override
                 public void relatorioAtividades() {}
             };
@@ -51,7 +51,7 @@ class UsuarioTest {
     @Test
     void testCriacaoUsuarioComIdNegativo() {
         assertThrows(IdUsuarioInvalidoException.class, () -> {
-            new Usuario("João Silva", -1, "senha123", "joao@email.com") {
+            new Usuario("João Silva", -1, "senha123", "joao@email.com", "usuario") {
                 @Override
                 public void relatorioAtividades() {}
             };
@@ -61,7 +61,7 @@ class UsuarioTest {
     @Test
     void testCriacaoUsuarioComIdZero() {
         assertThrows(IdUsuarioInvalidoException.class, () -> {
-            new Usuario("João Silva", 0, "senha123", "joao@email.com") {
+            new Usuario("João Silva", 0, "senha123", "joao@email.com", "usuario") {
                 @Override
                 public void relatorioAtividades() {}
             };
@@ -71,7 +71,7 @@ class UsuarioTest {
     @Test
     void testCriacaoUsuarioComEmailInvalido() {
         assertThrows(EmailInvalidoException.class, () -> {
-            new Usuario("João Silva", 1, "senha123", "email-invalido") {
+            new Usuario("João Silva", 1, "senha123", "email-invalido","usuario") {
                 @Override
                 public void relatorioAtividades() {}
             };
@@ -81,7 +81,7 @@ class UsuarioTest {
     @Test
     void testCriacaoUsuarioComEmailNulo() {
         assertThrows(EmailInvalidoException.class, () -> {
-            new Usuario("João Silva", 1, "senha123", null) {
+            new Usuario("João Silva", 1, "senha123", null,"usuario") {
                 @Override
                 public void relatorioAtividades() {}
             };
@@ -91,7 +91,7 @@ class UsuarioTest {
     @Test
     void testCriacaoUsuarioComPrivateKeyNula() {
         assertThrows(ChavePrivadaInvalidaException.class, () -> {
-            new Usuario("João Silva", 1, null, "joao@email.com") {
+            new Usuario("João Silva", 1, null, "joao@email.com","usuario") {
                 @Override
                 public void relatorioAtividades() {}
             };
@@ -101,7 +101,7 @@ class UsuarioTest {
     @Test
     void testCriacaoUsuarioComPrivateKeyVazia() {
         assertThrows(ChavePrivadaInvalidaException.class, () -> {
-            new Usuario("João Silva", 1, "", "joao@email.com") {
+            new Usuario("João Silva", 1, "", "joao@email.com","usuario") {
                 @Override
                 public void relatorioAtividades() {}
             };

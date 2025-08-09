@@ -14,11 +14,10 @@ import ufjf.poo.model.estoque.Produto;
 public class Gerente extends Usuario {
 
     private final Unidade unidadeFranquia;
-    private final static String type = "Gerente";
     //private List<Vendedor> equipeDeVendedores;
 
     public Gerente(String nome, int id, String key, String email, Unidade unidadeFranquia) {
-        super(nome, id, key, email);
+        super(nome, id, key, email, "Gerente" );
         this.unidadeFranquia = unidadeFranquia;
     }
     

@@ -19,9 +19,9 @@ public abstract class Usuario {
     //private List <notificacao> notificacoes;
     private  String privateKey;
     private  String email;
-    private final static String type = "Usuario";
-    
-    public Usuario(String nome , int id , String key, String email){
+    private  String type;
+
+    public Usuario(String nome , int id , String key, String email, String tipo){
         
     if (nome == null || nome.trim().isEmpty()) {
         throw new NomeUsuarioInvalidoException();
@@ -40,16 +40,9 @@ public abstract class Usuario {
         this.id = id;
         this.email = email;
         privateKey = key;
+        type = tipo;
     }
-    
-    public void login(){
-        
-    }
-    
-    public void deslogar(){
-        
-    }
-    
+
     public abstract void relatorioAtividades();
     
     public String getNome(){

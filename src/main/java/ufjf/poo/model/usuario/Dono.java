@@ -17,10 +17,9 @@ import ufjf.poo.model.pedido.Pedido;
 public class Dono extends Usuario {
     
     private final List<Unidade> unidadesGerenciadas;
-    private final static String type = "Dono";
 
     public Dono(String nome, int id, String key, String email, List<Unidade> unidadesGerenciadas) {
-        super(nome, id, key, email);
+        super(nome, id, key, email, "Dono");
         this.unidadesGerenciadas = new ArrayList<>(unidadesGerenciadas);
     }
     

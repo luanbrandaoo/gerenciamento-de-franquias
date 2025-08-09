@@ -19,10 +19,9 @@ public class Vendedor extends Usuario {
     private final List<Pedido> pedidosRealizados;
     private final Estoque estoqueDisponivel;
     private static int proximoIdPedido = 0;
-    private final static String type = "Vendedor";
 
     public Vendedor(String nome, int id, String key, String email, Estoque estoqueDisponivel) {
-        super(nome, id, key, email);
+        super(nome, id, key, email, "Vendedor");
 
         pedidosRealizados = new ArrayList<>();
         this.estoqueDisponivel = estoqueDisponivel;
