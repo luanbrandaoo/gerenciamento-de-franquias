@@ -72,7 +72,8 @@ public class MenuPrincipalFrame extends JFrame {
         new SwingWorker<Void, Void>() {
             @Override
             protected Void doInBackground() {
-                DataPersistence.saveAllData(todosUsuarios, todasUnidades, null);
+                DataPersistence.saveUsuario(todosUsuarios);
+                DataPersistence.saveUnidade(todasUnidades);
                 return null;
             }
             

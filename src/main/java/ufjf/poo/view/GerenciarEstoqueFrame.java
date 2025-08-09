@@ -54,7 +54,7 @@ public class GerenciarEstoqueFrame extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 // Salva todos os dados para persistência
-                DataPersistence.saveAllData(null, todasUnidades, null);
+                DataPersistence.saveUnidade(todasUnidades);
             }
         });
 
