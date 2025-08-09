@@ -17,6 +17,8 @@ import ufjf.poo.controller.DataPersistence;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MenuPrincipalFrame extends JFrame {
@@ -34,7 +36,28 @@ public class MenuPrincipalFrame extends JFrame {
         configurarFechamento();
         inicializarInterface();
     }
-
+   /* 
+    private void inicializaListaVendedores() {
+    
+    
+        Usuario u = Session.getUsuarioLogado;
+        if(
+    
+    
+        List<Vendedor> vendedores;
+        for (Usuario usuario : todosUsuarios) {
+            String tipoUsuario = usuario.getClass().getSimpleName();
+    
+            if(tpoUsuario == Vendedor)
+            modeloTabelaUsuarios.addRow(new Object[]{
+                usuario.getId(),
+                usuario.getNome(),
+                usuario.getEmail(),
+                tipoUsuario
+            });
+        }
+    }
+*/
     private void configurarJanela() {
         setTitle("Menu Principal - " + session.getUsuarioLogado().getNome());
         setSize(800, 600);
@@ -147,11 +170,14 @@ public class MenuPrincipalFrame extends JFrame {
         painel.add(Box.createVerticalStrut(15));
     }
     
-    // Novo método para adicionar os botões do Gerente
+    // método para adicionar os botões do Gerente
     private void adicionarBotaoGerente(JPanel painel, Gerente gerente) {
+        
+        Unidade unidadeEspecifica =  gerente.getUnidadeFranquia();
+                        
         JButton btnGerenciarEquipe = criarBotao(
             "Gerenciar Equipe de Vendas",
-            e -> new GerenciarUsuariosFrame(session, todosUsuarios, todasUnidades).setVisible(true)
+            e -> new GerenciarUsuariosFrame(session, gerente).setVisible(true)
         );
         painel.add(btnGerenciarEquipe);
         painel.add(Box.createVerticalStrut(10));

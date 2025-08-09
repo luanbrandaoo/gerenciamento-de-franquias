@@ -22,6 +22,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -108,13 +109,18 @@ public class Main {
         Unidade unidade1 = new Unidade(1, "Unidade Centro", "Rua A, 123", estoqueUnidade1);
         Unidade unidade2 = new Unidade(2, "Unidade Bairro", "Av B, 456", estoqueUnidade2);
         
-        List<Usuario> usuarios = new ArrayList<>();
-        usuarios.add(new Dono("Dono", 1, "dono123", "dono@empresa.com", List.of(unidade1, unidade2)));
-        usuarios.add(new Gerente("Gerente_1", 2, "gerente123", "gerente1@empresa.com", unidade1));
-        usuarios.add(new Gerente("Gerente_2", 3, "gerente456", "gerente2@empresa.com", unidade2));
-        usuarios.add(new Vendedor("Vendedor_1", 4, "vendedor123", "vendedor1@empresa.com", estoqueUnidade1));
-        usuarios.add(new Vendedor("Vendedor_2", 5, "vendedor456", "vendedor2@empresa.com", estoqueUnidade1));
-        usuarios.add(new Vendedor("Vendedor_3", 6, "vendedor789", "vendedor3@empresa.com", estoqueUnidade2));
+        Dono dono = new Dono("Dono", 1, "dono123", "dono@empresa.com", List.of(unidade1, unidade2));
+        Gerente gerente1 = new Gerente("Gerente_1", 2, "gerente123", "gerente1@empresa.com", unidade1);
+        Gerente gerente2 = new Gerente("Gerente_2", 3, "gerente456", "gerente2@empresa.com", unidade2);
+        Vendedor vendedor1 = new Vendedor("Vendedor_1", 4, "vendedor123", "vendedor1@empresa.com", estoqueUnidade1);
+        Vendedor vendedor2 = new Vendedor("Vendedor_2", 5, "vendedor456", "vendedor2@empresa.com", estoqueUnidade1);
+        Vendedor vendedor3 = new Vendedor("Vendedor_3", 6, "vendedor789", "vendedor3@empresa.com", estoqueUnidade2);
+
+        List<Usuario> usuarios = new ArrayList<>(Arrays.asList(dono, gerente1, gerente2, vendedor1, vendedor2, vendedor3));
+        
+        unidade1.adicionarVendedor(vendedor1);
+        unidade1.adicionarVendedor(vendedor2);
+        unidade2.adicionarVendedor(vendedor3);
         
         dados.setUsuarios(usuarios);
         dados.setUnidades(List.of(unidade1, unidade2));
